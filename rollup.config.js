@@ -13,23 +13,22 @@ const plugins = [
   babel({
     extensions,
     babelHelpers: 'bundled',
-    exclude: 'node_modules/**'
-  })
+    exclude: 'node_modules/**',
+  }),
 ]
 
-export default
-{
+export default {
   input,
   output: [
     {
       file: './lib/' + libraryName + '.esm.js',
-      format: 'esm'
+      format: 'esm',
     },
     {
       file: './lib/' + libraryName + '.js',
       format: 'cjs',
-      exports: 'named'
-    }
+      exports: 'named',
+    },
   ],
-  plugins
+  plugins,
 }

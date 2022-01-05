@@ -2,7 +2,7 @@
 
 A micro conditional javascript engine used to parse the raw logical and comparison expressions, evaluate the expression in the given data context, and provide access to a text form of the given expressions.
 
-> Revision: August 17, 2021.
+> Revision: Jan 5, 2022.
 
 ## About
 
@@ -15,11 +15,11 @@ This project has been developed to provide a shared conditional logic between fr
 ## Installation via NPM or Yarn
 
 ```sh
-npm install -D @briza/illogical
+npm install -D @spaceavocado/illogical
 ```
 
 ```sh
-yarn add @briza/illogical -D
+yarn add @spaceavocado/illogical -D
 ```
 
 **Table of Content**
@@ -76,7 +76,7 @@ yarn add @briza/illogical -D
 
 ```js
 // Import the illogical engine
-import Engine from '@briza/illogical'
+import Engine from '@spaceavocado/illogical'
 
 // Create a new instance of the engine
 const engine = new Engine()
@@ -656,7 +656,7 @@ Below described, are individual options object properties which could be used in
 
 ```js
 // Import the illogical engine
-import Engine from '@briza/illogical'
+import Engine from '@spaceavocado/illogical'
 
 // Create a new instance of the engine
 const opts = {
@@ -741,27 +741,15 @@ import {
   OPERATOR_NOR,
   OPERATOR_XOR,
   OPERATOR_NOT,
-} from '@briza/illogical'
+} from '@spaceavocado/illogical'
 ```
-
-## Breaking Changes
-
-### v1.4.2
-
-- Change on `@babel/env` preset to target `> 1%, node 12` this will remove some polyfills that were causing performance
-  problems in some projects.
-
-### v1.2.0
-
-- Removed **strict** mode from the Engine constructor options.
-  `const engine = new Engine(strictMode, opts);` -> `const engine = new Engine(opts);`
 
 ---
 
 ## Contributing
 
-See [contributing.md](https://github.com/briza-insurance/illogical/blob/master/contributing.md).
+See [contributing.md](contributing.md).
 
 ## License
 
-Illogical is released under the MIT license. See [license.txt](https://github.com/briza-insurance/illogical/blob/master/license.txt).
+Illogical is released under the MIT license. See [license.txt](license.txt).

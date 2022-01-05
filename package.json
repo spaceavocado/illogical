@@ -1,6 +1,6 @@
 {
-  "name": "@briza/illogical",
-  "version": "1.5.1",
+  "name": "@spaceavocado/illogical",
+  "version": "2.0.0",
   "description": "A micro conditional javascript engine used to parse the raw logical and comparison expressions, evaluate the expression in the given data context, and provide access to a text form of the given expressions.",
   "main": "lib/illogical.js",
   "module": "lib/illogical.esm.js",
@@ -8,33 +8,36 @@
   "files": [
     "/lib",
     "/types",
-    "changelog.md"
+    "changelog.md",
+    "readme.md",
+    "license.txt"
   ],
   "author": {
     "name": "David Horak",
-    "email": "dhorak@briza.com"
+    "email": "info@davidhorak.com"
   },
   "license": "MIT",
   "scripts": {
     "type-check": "tsc --noEmit",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "rollup -c",
-    "build": "npm run build:types && npm run build:js",
+    "build": "run-s build:types build:js",
     "docs": "typedoc src && git checkout docs/.nojekyll",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "lint": "eslint --max-warnings 0 \"src/**/*.{ts,js}\"",
     "lint:fix": "eslint --max-warnings 0 \"src/**/*.{ts,js}\" --fix",
-    "prepublishOnly": "npm run test && npm run build",
+    "prepublishOnly": "run-s check-licenses test build",
     "check-licenses": "license-checker --summary --excludePrivatePackages --onlyAllow \"MIT;MIT OR X11;Apache-2.0;ISC;BSD-3-Clause;BSD-2-Clause;CC-BY-4.0;Public Domain;BSD;CC-BY-3.0;CC0-1.0;Unlicense\""
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:briza-insurance/illogical.git"
+    "url": "git@github.com:spaceavocado/illogical.git"
   },
   "bugs": {
-    "url": "https://github.com/briza-insurance/illogical/issues"
+    "url": "https://github.com/spaceavocado/illogical/issues"
   },
-  "homepage": "https://github.com/briza-insurance/illogical",
+  "homepage": "https://github.com/spaceavocado/illogical",
   "keywords": [
     "json",
     "logic",
@@ -60,13 +63,27 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
+    "husky": "^7.0.4",
     "jest": "^27.0.6",
     "license-checker": "^25.0.1",
+    "lint-staged": "^12.1.5",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.3.2",
     "rollup": "^2.56.2",
     "rollup-plugin-eslint": "^7.0.0",
     "ts-jest": "^27.0.5",
     "typedoc": "^0.21.6",
     "typescript": "^4.3.5"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "npm run lint:fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
