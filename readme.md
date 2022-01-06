@@ -4,11 +4,11 @@ A micro conditional javascript engine used to parse the raw logical and comparis
 
 > Revision: Jan 5, 2022.
 
-Forked from [briza-insurance/illogical](https://github.com/briza-insurance/illogical).
-
 ## About
 
 This project has been developed to provide a shared conditional logic between front-end and back-end code, stored in JSON or in any other data serialization format.
+
+> Forked from [briza-insurance/illogical](https://github.com/briza-insurance/illogical).
 
 > Code documentation could be found here: https://spaceavocado.github.io/illogical/index.html.
 
