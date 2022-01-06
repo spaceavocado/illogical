@@ -1,82 +1,14 @@
-import {
-  Context,
-  Evaluable,
-  EvaluableType,
-  Result,
-  SimplifyArgs,
-} from '../../common/evaluable'
-import { isEvaluable } from '../../common/type-check'
-import { Operand } from '../../operand'
-import { ExpressionInput } from '../../parser'
-import { Options } from '../../parser/options'
-
-/**
- * Abstract comparison expression
- */
-export abstract class Comparison implements Evaluable {
-  type: EvaluableType = EvaluableType.Expression
-
-  /**
-   * @constructor
-   * @param {string} operator String representation of the operator.
-   * @param {Operand} left Left operand.
-   * @param {Operand} right Right operand.
-   */
-  constructor(
-    protected readonly operator: string,
-    protected readonly operatorSymbol: symbol,
-    protected readonly left: Operand,
-    protected readonly right: Operand
-  ) {}
-
-  /**
-   * {@link Evaluable.evaluate}
-   */
-  evaluate(ctx: Context): Result {
-    return this.comparison(this.left.evaluate(ctx), this.right.evaluate(ctx))
-  }
-
-  /**
-   * Get the strict representation of the expression.
-   * @return {string}
-   */
-  toString(): string {
-    return `(${this.left.toString()} ${this.operator} ${this.right.toString()})`
-  }
-
-  /**
-   * Compares left and right operands evaluated values.
-   * @param {Result} left left operand result value
-   * @param {Result} right right operand result value
-   * @returns {boolean}
-   */
-  abstract comparison(left: Result, right: Result): boolean
-
-  /**
-   * {@link Evaluable.simplify}
-   */
-  simplify(...args: SimplifyArgs): Result | Evaluable {
-    const left = this.left.simplify(...args)
-    const right = this.right.simplify(...args)
-    if (!isEvaluable(left) && !isEvaluable(right)) {
-      return this.comparison(left, right)
-    }
-    return this
-  }
-
-  /**
-   * {@link Evaluable.serialize}
-   */
-  serialize(options: Options): ExpressionInput {
-    const { operatorMapping } = options
-    const operator = operatorMapping.get(this.operatorSymbol)
-    if (operator === undefined) {
-      throw new Error(`missing operator ${this.operatorSymbol.toString()}`)
-    }
-    return [
-      operator,
-      this.left.serialize(options),
-      this.right.serialize(options),
-    ]
-  }
-}
+export type { Comparison } from './comparison'
+export { eq, KIND as KIND_EQ } from './eq'
+export { ge, KIND as KIND_GE } from './ge'
+export { gt, KIND as KIND_GT } from './gt'
+export { In, KIND as KIND_IN } from './in'
+export { KIND as KIND_LE, le } from './le'
+export { KIND as KIND_LT, lt } from './lt'
+export { KIND as KIND_NE, ne } from './ne'
+export { KIND as KIND_NOT_IN, notIn } from './not-in'
+export { KIND as KIND_OVERLAP, overlap } from './overlap'
+export { KIND as KIND_PREFIX, prefix } from './prefix'
+export { KIND as KIND_PRESENT, present } from './present'
+export { KIND as KIND_SUFFIX, suffix } from './suffix'
+export { KIND as KIND_UNDEF, undef } from './undef'

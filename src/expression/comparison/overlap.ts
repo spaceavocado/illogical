@@ -1,55 +1,25 @@
-import { Evaluable, Result } from '../../common/evaluable'
-import { Comparison } from '../comparison'
+import { asExpected } from '../../common/utils'
+import { Evaluable, EvaluatedPrimitive } from '../../evaluable'
+import { isCollection } from '../../operand/collection'
+import { Comparison, comparison } from './comparison'
 
-// Operator key
-export const OPERATOR = Symbol('OVERLAP')
+export const KIND = Symbol('OVERLAP')
 
-/**
- * Overlap comparison expression
- */
-export class Overlap extends Comparison {
-  /**
-   * @constructor
-   * @param {Evaluable} left Left operand.
-   * @param {Evaluable} right Right operand.
-   */
-  constructor(...args: Evaluable[])
-  constructor(left: Evaluable, right: Evaluable) {
-    if (arguments.length !== 2) {
-      throw new Error('comparison expression expects left and right operands')
-    }
-    super('overlap', OPERATOR, left, right)
+export const overlap = (left: Evaluable, right: Evaluable): Comparison => {
+  const leftIsArray = isCollection(left)
+  const rightIsArray = isCollection(right)
+
+  if (!leftIsArray || !rightIsArray) {
+    throw new Error('invalid OVERLAP expression, both operands must be array')
   }
 
-  /**
-   * {@link Comparison.comparison}
-   */
-  comparison(left: Result, right: Result): boolean {
-    if (
-      left === undefined ||
-      left === null ||
-      right === undefined ||
-      right === null
-    ) {
-      return false
-    }
-
-    if (!Array.isArray(left) || !Array.isArray(right)) {
-      throw new Error('invalid OVERLAP expression, both operands must be array')
-    }
-
-    const leftArray = left as (string | number)[]
-    const rightArray = right as (string | number)[]
-    return leftArray.some((element) => rightArray.includes(element))
-  }
-
-  /**
-   * Get the strict representation of the expression.
-   * @return {string}
-   */
-  toString(): string {
-    const left = this.left.toString()
-    const right = this.right.toString()
-    return `(${left} ${this.operator} ${right})`
-  }
+  return comparison({
+    operator: 'overlap',
+    kind: KIND,
+    operands: [left, right],
+    comparison: (left, right) =>
+      asExpected<EvaluatedPrimitive[]>(left).some((value) =>
+        asExpected<EvaluatedPrimitive[]>(right).includes(value)
+      ),
+  })
 }

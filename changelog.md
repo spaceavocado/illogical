@@ -1,5 +1,15 @@
 # illogical changelog
 
+## 2.0.0
+
+- Removed classes, migrated to pure functions.
+- Unlimited expression nesting, i.e. comparison expression operands now could be arbitrary expressions. (e.g.: [==, $RefA, [==, 1, 1]])
+- Any primitive values could be now evaluated, i.e. the parser does not restrict the expression input to be a logical expression. (e.g.: illogical.evaluate(1) evaluated as 1)
+- Collections starting with logical or comparison expression operator symbol could be now escaped to be processed as regular collections. (e.g.: [IN, $RefA, [\==, 1, 1]] ... "\" is used as escape character (configurable))
+- Refactoring of parser options.
+- Simplification of references now allows to use regular expressions in "ignoredPaths".
+- Complete test coverage.
+
 ## 1.5.1
 
 - Fix issue with nested conditions not being completely simplified.

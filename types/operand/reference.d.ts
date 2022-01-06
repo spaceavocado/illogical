@@ -1,44 +1,27 @@
-import { Context, Evaluable, Result } from '../common/evaluable';
-import { Options } from '../parser/options';
-import { Operand } from '.';
+import { Context, Evaluable, Evaluated } from '../evaluable';
+export declare const KIND: unique symbol;
+export declare type ReferenceSerializeOptions = {
+    from: (operand: string) => undefined | string;
+    to: (operand: string) => string;
+};
+export declare type ReferenceSimplifyOptions = {
+    ignoredPaths: (RegExp | string)[];
+};
+export declare const defaultReferenceSerializeOptions: ReferenceSerializeOptions;
 export declare enum DataType {
+    Unknown = "Unknown",
     Number = "Number",
     String = "String"
 }
-/**
- * Reference operand resolved within the context
- */
-export declare class Reference extends Operand {
-    private readonly key;
-    private readonly dataType;
-    /**
-     * @constructor
-     * @param {string} key Context key.
-     */
-    constructor(key: string);
-    /**
-     * Evaluate in the given context.
-     * @param {Context} ctx
-     * @return {boolean}
-     */
-    evaluate(ctx: Context): Result;
-    /**
-     * {@link Evaluable.simplify}
-     */
-    simplify(ctx: Context, strictKeys?: string[], optionalKeys?: string[]): Result | Evaluable;
-    /**
-     * {@link Evaluable.serialize}
-     */
-    serialize({ referenceSerialization }: Options): string;
-    /**
-     * Get the strict representation of the operand.
-     * @return {string}
-     */
-    toString(): string;
-    /**
-     * Converts a value to a specified data type
-     * Silently returns original value if data type conversion has not been implemented.
-     * @param value value to cast as data type
-     */
-    private toDataType;
-}
+export declare const isValidDataType: (type: unknown) => type is DataType;
+export declare const getDataType: (path: string) => DataType;
+export declare const trimDataType: (path: string) => string;
+export declare const toNumber: (value: Evaluated) => number | undefined;
+export declare const toString: (value: Evaluated) => string | undefined;
+export declare const toDataType: (type: DataType) => (value: Evaluated) => Evaluated;
+declare type contextPath = string;
+declare type contextValue = unknown | undefined;
+export declare const contextLookup: (context: Context, path: string) => [contextPath, contextValue];
+export declare const isIgnoredPath: (ignoredPaths: (RegExp | string)[], path: string) => boolean;
+export declare const reference: (path: string) => Evaluable;
+export {};

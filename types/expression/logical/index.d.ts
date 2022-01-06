@@ -1,32 +1,6 @@
-import { Context, Evaluable, EvaluableType, Result } from '../../common/evaluable';
-import { ExpressionInput } from '../../parser';
-import { Options } from '../../parser/options';
-/**
- * Abstract logical expression
- */
-export declare abstract class Logical implements Evaluable {
-    protected readonly operator: string;
-    protected readonly operatorSymbol: symbol;
-    protected readonly operands: Evaluable[];
-    type: EvaluableType;
-    /**
-     * @constructor
-     * @param {string} operator String representation of the operator.
-     * @param {Evaluable[]} operands Collection of operands.
-     */
-    constructor(operator: string, operatorSymbol: symbol, operands: Evaluable[]);
-    /**
-     * {@link Evaluable.evaluate}
-     */
-    abstract evaluate(ctx: Context): Result;
-    /**
-     * {@link Evaluable.simplify}
-     */
-    abstract simplify(ctx: Context, strictKeys?: string[], optionalKeys?: string[]): Result | Evaluable;
-    /**
-     * Get the strict representation of the expression.
-     * @return {string}
-     */
-    toString(): string;
-    serialize(options: Options): ExpressionInput;
-}
+export { and, KIND as KIND_AND } from './and';
+export type { Logical } from './logical';
+export { KIND as KIND_NOR, nor } from './nor';
+export { KIND as KIND_NOT, not } from './not';
+export { KIND as KIND_OR, or } from './or';
+export { KIND as KIND_XOR, xor } from './xor';

@@ -2,24 +2,24 @@
 
 A micro conditional javascript engine used to parse the raw logical and comparison expressions, evaluate the expression in the given data context, and provide access to a text form of the given expressions.
 
-> Revision: August 17, 2021.
+> Revision: Jan 5, 2022.
 
 ## About
 
 This project has been developed to provide a shared conditional logic between front-end and back-end code, stored in JSON or in any other data serialization format.
 
-> Code documentation could be found here: https://briza-insurance.github.io/illogical/index.html.
+> Code documentation could be found here: https://spaceavocado.github.io/illogical/index.html.
 
 > The library is being build as **CommonJS** module and **ESM**.
 
 ## Installation via NPM or Yarn
 
 ```sh
-npm install -D @briza/illogical
+npm install -D @spaceavocado/illogical
 ```
 
 ```sh
-yarn add @briza/illogical -D
+yarn add @spaceavocado/illogical -D
 ```
 
 **Table of Content**
@@ -74,90 +74,72 @@ yarn add @briza/illogical -D
 
 ## Basic Usage
 
-```js
+```ts
 // Import the illogical engine
-import Engine from '@briza/illogical'
+import illogical from '@spaceavocado/illogical'
 
 // Create a new instance of the engine
-const engine = new Engine()
+const i = illogical()
 
 // Evaluate the raw expression
-const result = engine.evaluate(['==', 5, 5])
+const result = i.evaluate(['==', 5, 5])
 ```
 
 > For advanced usage, please [Engine Options](#engine-options).
 
 ### Evaluate
 
-Evaluate comparison or logical expression as TRUE or FALSE result:
+Evaluate comparison or logical expression:
 
-`engine.evaluate(`[Comparison Expression](#comparison-expressions) or [Logical Expression](#logical-expressions), [Evaluation Data Context](#evaluation-data-context)`)` => `boolean`
+`i.evaluate(`[Comparison Expression](#comparison-expressions) or [Logical Expression](#logical-expressions), [Evaluation Data Context](#evaluation-data-context)`)` => `boolean`
 
 > Data context is optional.
 
 **Example**
 
-```js
+```ts
 // Comparison expression
-engine.evaluate(['==', 5, 5])
-engine.evaluate(['==', 'circle', 'circle'])
-engine.evaluate(['==', true, true])
-engine.evaluate(['==', '$name', 'peter'], { name: 'peter' })
-engine.evaluate(['UNDEFINED', '$RefA'], {})
+i.evaluate(['==', 5, 5])
+i.evaluate(['==', 'circle', 'circle'])
+i.evaluate(['==', true, true])
+i.evaluate(['==', '$name', 'peter'], { name: 'peter' })
+i.evaluate(['UNDEFINED', '$RefA'], {})
 
 // Logical expression
-engine.evaluate(['AND', ['==', 5, 5], ['==', 10, 10]])
-engine.evaluate(['AND', ['==', 'circle', 'circle'], ['==', 10, 10]])
-engine.evaluate(['OR', ['==', '$name', 'peter'], ['==', 5, 10]], {
-  name: 'peter',
-})
+i.evaluate(['AND', ['==', 5, 5], ['==', 10, 10]])
+i.evaluate(['AND', ['==', 'circle', 'circle'], ['==', 10, 10]])
+i.evaluate(['OR', ['==', '$name', 'peter'], ['==', 5, 10]], { name: 'peter' })
 ```
 
 ### Statement
 
 Get expression string representation:
 
-`engine.statement(`[Comparison Expression](#comparison-expressions) or [Logical Expression](#logical-expressions)`)` => `string`
+`i.statement(`[Comparison Expression](#comparison-expressions) or [Logical Expression](#logical-expressions)`)` => `string`
 
 **Example**
 
-```js
+```ts
 /* Comparison expression */
 
-engine.statement(['==', 5, 5])
-// (5 == 5)
-
-engine.statement(['==', 'circle', 'circle'])
-// ("circle" == "circle")
-
-engine.statement(['==', true, true])
-// (true == true)
-
-engine.statement(['==', '$name', 'peter'], { name: 'peter' })
-// ({name} == "peter")
-
-engine.statement(['UNDEFINED', '$RefA'])
-// ({RefA} is UNDEFINED)
+i.statement(['==', 5, 5]) // (5 == 5)
+i.statement(['==', 'circle', 'circle']) // ("circle" == "circle")
+i.statement(['==', true, true]) // (true == true)
+i.statement(['==', '$name', 'peter'], { name: 'peter' }) // ({name} == "peter")
+i.statement(['UNDEFINED', '$RefA']) // ({RefA} is UNDEFINED)
 
 /* Logical expression */
 
-engine.statement(['AND', ['==', 5, 5], ['==', 10, 10]])
-// ((5 == 5) AND (10 == 10))
-
-engine.statement(['AND', ['==', 'circle', 'circle'], ['==', 10, 10]])
-// (("circle" == "circle") AND (10 == 10))
-
-engine.statement(['OR', ['==', '$name', 'peter'], ['==', 5, 10]], {
-  name: 'peter',
-})
-// (({name} == "peter") OR (5 == 10))
+i.statement(['AND', ['==', 5, 5], ['==', 10, 10]]) // ((5 == 5) AND (10 == 10))
+i.statement(['AND', ['==', 'circle', 'circle'], ['==', 10, 10]]) // (("circle" == "circle") AND (10 == 10))
+i.statement(['OR', ['==', '$name', 'peter'], ['==', 5, 10]], { name: 'peter' }) // (({name} == "peter") OR (5 == 10))
 ```
 
 ### Parse
 
 Parse the expression into a evaluable object, i.e. it returns the parsed self-evaluable condition expression.
 
-`engine.parse(`[Comparison Expression](#comparison-expressions) or [Logical Expression](#logical-expressions)`)` => `evaluable`
+`i.parse(`[Comparison Expression](#comparison-expressions) or [Logical Expression](#logical-expressions)`)` => `evaluable`
 
 #### Evaluate Function
 
@@ -166,13 +148,11 @@ Parse the expression into a evaluable object, i.e. it returns the parsed self-ev
 
 **Example**
 
-```js
-let evaluable = engine.parse(['==', '$name', 'peter'])
+```ts
+let evaluable = i.parse(['==', '$name', 'peter'])
 
 evaluable.evaluate({ name: 'peter' }) // true
-
-evaluable.toString()
-// ({name} == "peter")
+evaluable.toString() // ({name} == "peter")
 ```
 
 ### Simplify
@@ -182,10 +162,9 @@ the properties of context and wants to try to evaluate the expression.
 
 **Example**
 
-```js
-engine.simplify(['AND', ['==', '$a', 10], ['==', '$b', 20]], { a: 10 }) // ['==', '$b', 20]
-
-engine.simplify(['AND', ['==', '$a', 10], ['==', '$b', 20]], { a: 20 }) // false
+```ts
+i.simplify(['AND', ['==', '$a', 10], ['==', '$b', 20]], { a: 10 }) // ['==', '$b', 20]
+i.simplify(['AND', ['==', '$a', 10], ['==', '$b', 20]], { a: 20 }) // false
 ```
 
 Values not found in the context will cause the parent operand not to be evaluated and returned
@@ -197,8 +176,8 @@ present in the context.
 
 **Example**
 
-```js
-engine.simplify(
+```ts
+i.simplify(
   ['AND', ['==', '$a', 10], ['==', '$b', 20]],
   { a: 10 },
   ['b'] // '$b' will be evaluated to undefined.
@@ -210,8 +189,8 @@ values not present in the context except for a specified list of optional keys.
 
 **Example**
 
-```js
-engine.simplify(
+```ts
+i.simplify(
   ['OR', ['==', '$a', 10], ['==', '$b', 20], ['==', '$c', 20]],
   { c: 10 },
   undefined,
@@ -269,7 +248,7 @@ Supported data type conversions:
 
 **Example**
 
-```js
+```ts
 // Data context
 const ctx = {
   name: 'peter',
@@ -288,25 +267,25 @@ const ctx = {
 }
 
 // Evaluate an expression in the given data context
-engine.evaluate(['>', '$age', 20], ctx) // true
+i.evaluate(['>', '$age', 20], ctx) // true
 
 // Evaluate an expression in the given data context
-engine.evaluate(['==', '$address.city', 'Toronto'], ctx) // true
+i.evaluate(['==', '$address.city', 'Toronto'], ctx) // true
 
 // Accessing Array Element
-engine.evaluate(['==', '$options[1]', 2], ctx) // true
+i.evaluate(['==', '$options[1]', 2], ctx) // true
 
 // Accessing Array Element via Reference
-engine.evaluate(['==', '$options[{index}]', 3], ctx) // true
+i.evaluate(['==', '$options[{index}]', 3], ctx) // true
 
 // Nested Referencing
-engine.evaluate(['==', '$address.{segment}', 'Toronto'], ctx) // true
+i.evaluate(['==', '$address.{segment}', 'Toronto'], ctx) // true
 
 // Composite Reference Key
-engine.evaluate(['==', '$shape{shapeType}', 'circle'], ctx) // true
+i.evaluate(['==', '$shape{shapeType}', 'circle'], ctx) // true
 
 // Data Type Casting
-engine.evaluate(['==', '$age.(String)', '21'], ctx) // true
+i.evaluate(['==', '$age.(String)', '21'], ctx) // true
 ```
 
 ### Operand Types
@@ -319,7 +298,7 @@ Simple value types: string, number, boolean.
 
 **Example**
 
-```js
+```ts
 ;['==', 5, 5][('==', 'circle', 'circle')][('==', true, true)]
 ```
 
@@ -357,12 +336,12 @@ Expression format: `["==", `[Left Operand](#operand-types), [Right Operand](#ope
 
 > Valid operand types: string, number, boolean.
 
-```json
+```tson
 ["==", 5, 5]
 ```
 
-```js
-engine.evaluate(['==', 5, 5]) // true
+```ts
+i.evaluate(['==', 5, 5]) // true
 ```
 
 #### Not Equal
@@ -371,12 +350,12 @@ Expression format: `["!=", `[Left Operand](#operand-types), [Right Operand](#ope
 
 > Valid operand types: string, number, boolean.
 
-```json
+```tson
 ["!=", "circle", "square"]
 ```
 
-```js
-engine.evaluate(['!=', 'circle', 'square']) // true
+```ts
+i.evaluate(['!=', 'circle', 'square']) // true
 ```
 
 #### Greater Than
@@ -385,12 +364,12 @@ Expression format: `[">", `[Left Operand](#operand-types), [Right Operand](#oper
 
 > Valid operand types: number.
 
-```json
+```tson
 [">", 10, 5]
 ```
 
-```js
-engine.evaluate(['>', 10, 5]) // true
+```ts
+i.evaluate(['>', 10, 5]) // true
 ```
 
 #### Greater Than or Equal
@@ -399,12 +378,12 @@ Expression format: `[">=", `[Left Operand](#operand-types), [Right Operand](#ope
 
 > Valid operand types: number.
 
-```json
+```tson
 [">=", 5, 5]
 ```
 
-```js
-engine.evaluate(['>=', 5, 5]) // true
+```ts
+i.evaluate(['>=', 5, 5]) // true
 ```
 
 #### Less Than
@@ -413,12 +392,12 @@ Expression format: `["<", `[Left Operand](#operand-types), [Right Operand](#oper
 
 > Valid operand types: number.
 
-```json
+```tson
 ["<", 5, 10]
 ```
 
-```js
-engine.evaluate(['<', 5, 10]) // true
+```ts
+i.evaluate(['<', 5, 10]) // true
 ```
 
 #### Less Than or Equal
@@ -427,12 +406,12 @@ Expression format: `["<=", `[Left Operand](#operand-types), [Right Operand](#ope
 
 > Valid operand types: number.
 
-```json
+```tson
 ["<=", 5, 5]
 ```
 
-```js
-engine.evaluate(['<=', 5, 5]) // true
+```ts
+i.evaluate(['<=', 5, 5]) // true
 ```
 
 #### In
@@ -441,14 +420,14 @@ Expression format: `["IN", `[Left Operand](#operand-types), [Right Operand](#ope
 
 > Valid operand types: number and number[] or string and string[].
 
-```json
+```tson
 ["IN", 5, [1,2,3,4,5]]
 ["IN", ["circle", "square", "triangle"], "square"]
 ```
 
-```js
-engine.evaluate(['IN', 5, [1, 2, 3, 4, 5]]) // true
-engine.evaluate(['IN', ['circle', 'square', 'triangle'], 'square']) // true
+```ts
+i.evaluate(['IN', 5, [1, 2, 3, 4, 5]]) // true
+i.evaluate(['IN', ['circle', 'square', 'triangle'], 'square']) // true
 ```
 
 #### Not In
@@ -457,14 +436,14 @@ Expression format: `["NOT IN", `[Left Operand](#operand-types), [Right Operand](
 
 > Valid operand types: number and number[] or string and string[].
 
-```json
+```tson
 ["IN", 10, [1,2,3,4,5]]
 ["IN", ["circle", "square", "triangle"], "oval"]
 ```
 
-```js
-engine.evaluate(['NOT IN', 10, [1, 2, 3, 4, 5]]) // true
-engine.evaluate(['NOT IN', ['circle', 'square', 'triangle'], 'oval']) // true
+```ts
+i.evaluate(['NOT IN', 10, [1, 2, 3, 4, 5]]) // true
+i.evaluate(['NOT IN', ['circle', 'square', 'triangle'], 'oval']) // true
 ```
 
 #### Prefix
@@ -476,13 +455,13 @@ Expression format: `["PREFIX", `[Left Operand](#operand-types), [Right Operand](
 - Left operand is the PREFIX term.
 - Right operand is the tested word.
 
-```json
+```tson
 ["PREFIX", "hemi", "hemisphere"]
 ```
 
-```js
-engine.evaluate(['PREFIX', 'hemi', 'hemisphere']) // true
-engine.evaluate(['PREFIX', 'hemi', 'sphere']) // false
+```ts
+i.evaluate(['PREFIX', 'hemi', 'hemisphere']) // true
+i.evaluate(['PREFIX', 'hemi', 'sphere']) // false
 ```
 
 #### Suffix
@@ -494,13 +473,13 @@ Expression format: `["SUFFIX", `[Left Operand](#operand-types), [Right Operand](
 - Left operand is the tested word.
 - Right operand is the SUFFIX term.
 
-```json
+```tson
 ["SUFFIX", "establishment", "ment"]
 ```
 
-```js
-engine.evaluate(['SUFFIX', 'establishment', 'ment']) // true
-engine.evaluate(['SUFFIX', 'establish', 'ment']) // false
+```ts
+i.evaluate(['SUFFIX', 'establishment', 'ment']) // true
+i.evaluate(['SUFFIX', 'establish', 'ment']) // false
 ```
 
 #### Overlap
@@ -509,32 +488,28 @@ Expression format: `["OVERLAP", `[Left Operand](#operand-types), [Right Operand]
 
 > Valid operand types number[] or string[].
 
-```json
+```tson
 ["OVERLAP", [1, 2], [1, 2, 3, 4, 5]]
 ["OVERLAP", ["circle", "square", "triangle"], ["square"]]
 ```
 
-```js
-engine.evaluate(['OVERLAP', [1, 2, 6], [1, 2, 3, 4, 5]]) // true
-engine.evaluate([
-  'OVERLAP',
-  ['circle', 'square', 'triangle'],
-  ['square', 'oval'],
-]) // true
+```ts
+i.evaluate(['OVERLAP', [1, 2, 6], [1, 2, 3, 4, 5]]) // true
+i.evaluate(['OVERLAP', ['circle', 'square', 'triangle'], ['square', 'oval']]) // true
 ```
 
 #### Undefined
 
 Expression format: `["UNDEFINED", `[Reference Operand](#reference)`]`.
 
-```json
+```tson
 ["UNDEFINED", "$RefA"]
 ```
 
-```js
-engine.evaluate(['UNDEFINED', 'RefA'], {}) // true
-engine.evaluate(['UNDEFINED', 'RefA'], { RefA: undefined }) // true
-engine.evaluate(['UNDEFINED', 'RefA'], { RefA: 10 }) // false
+```ts
+i.evaluate(['UNDEFINED', 'RefA'], {}) // true
+i.evaluate(['UNDEFINED', 'RefA'], { RefA: undefined }) // true
+i.evaluate(['UNDEFINED', 'RefA'], { RefA: 10 }) // false
 ```
 
 #### Present
@@ -543,17 +518,17 @@ Evaluates as FALSE when the operand is UNDEFINED or NULL.
 
 Expression format: `["PRESENT", `[Reference Operand](#reference)`]`.
 
-```json
+```tson
 ["PRESENT", "$RefA"]
 ```
 
-```js
-engine.evaluate(['PRESENT', 'RefA'], {}) // false
-engine.evaluate(['PRESENT', 'RefA'], { RefA: undefined }) // false
-engine.evaluate(['PRESENT', 'RefA'], { RefA: null }) // false
-engine.evaluate(['PRESENT', 'RefA'], { RefA: 10 }) // true
-engine.evaluate(['PRESENT', 'RefA'], { RefA: false }) // true
-engine.evaluate(['PRESENT', 'RefA'], { RefA: 0 }) // true
+```ts
+i.evaluate(['PRESENT', 'RefA'], {}) // false
+i.evaluate(['PRESENT', 'RefA'], { RefA: undefined }) // false
+i.evaluate(['PRESENT', 'RefA'], { RefA: null }) // false
+i.evaluate(['PRESENT', 'RefA'], { RefA: 10 }) // true
+i.evaluate(['PRESENT', 'RefA'], { RefA: false }) // true
+i.evaluate(['PRESENT', 'RefA'], { RefA: 0 }) // true
 ```
 
 ### Logical Expressions
@@ -566,12 +541,12 @@ Expression format: `["AND", Left Operand 1, Right Operand 2, ... , Right Operand
 
 > Valid operand types: [Comparison Expression](#comparison-expressions) or [Nested Logical Expression](#logical-expressions).
 
-```json
+```tson
 ["AND", ["==", 5, 5], ["==", 10, 10]]
 ```
 
-```js
-engine.evaluate(['AND', ['==', 5, 5], ['==', 10, 10]]) // true
+```ts
+i.evaluate(['AND', ['==', 5, 5], ['==', 10, 10]]) // true
 ```
 
 #### Or
@@ -582,12 +557,12 @@ Expression format: `["OR", Left Operand 1, Right Operand 2, ... , Right Operand 
 
 > Valid operand types: [Comparison Expression](#comparison-expressions) or [Nested Logical Expression](#logical-expressions).
 
-```json
+```tson
 ["OR", ["==", 5, 5], ["==", 10, 5]]
 ```
 
-```js
-engine.evaluate(['OR', ['==', 5, 5], ['==', 10, 5]]) // true
+```ts
+i.evaluate(['OR', ['==', 5, 5], ['==', 10, 5]]) // true
 ```
 
 #### Nor
@@ -598,12 +573,12 @@ Expression format: `["NOR", Left Operand 1, Right Operand 2, ... , Right Operand
 
 > Valid operand types: [Comparison Expression](#comparison-expressions) or [Nested Logical Expression](#logical-expressions).
 
-```json
+```tson
 ["NOR", ["==", 5, 1], ["==", 10, 5]]
 ```
 
-```js
-engine.evaluate(['NOR', ['==', 5, 1], ['==', 10, 5]]) // true
+```ts
+i.evaluate(['NOR', ['==', 5, 1], ['==', 10, 5]]) // true
 ```
 
 #### Xor
@@ -614,20 +589,20 @@ Expression format: `["XOR", Left Operand 1, Right Operand 2, ... , Right Operand
 
 > Valid operand types: [Comparison Expression](#comparison-expressions) or [Nested Logical Expression](#logical-expressions).
 
-```json
+```tson
 ["XOR", ["==", 5, 5], ["==", 10, 5]]
 ```
 
-```js
-engine.evaluate(['XOR', ['==', 5, 5], ['==', 10, 5]]) // true
+```ts
+i.evaluate(['XOR', ['==', 5, 5], ['==', 10, 5]]) // true
 ```
 
-```json
+```tson
 ["XOR", ["==", 5, 5], ["==", 10, 10]]
 ```
 
-```js
-engine.evaluate(['XOR', ['==', 5, 5], ['==', 10, 10]]) // false
+```ts
+i.evaluate(['XOR', ['==', 5, 5], ['==', 10, 10]]) // false
 ```
 
 #### Not
@@ -638,12 +613,12 @@ Expression format: `["NOT", Operand]`
 
 > Valid operand types: [Comparison Expression](#comparison-expressions) or [Nested Logical Expression](#logical-expressions).
 
-```json
+```tson
 ["NOT", ["==", 5, 5]]
 ```
 
-```js
-engine.evaluate(['NOT', ['==', 5, 5]]) // true
+```ts
+i.evaluate(['NOT', ['==', 5, 5]]) // true
 ```
 
 ## Engine Options
@@ -654,9 +629,9 @@ Below described, are individual options object properties which could be used in
 
 **Usage**
 
-```js
+```ts
 // Import the illogical engine
-import Engine from '@briza/illogical'
+import Engine from '@spaceavocado/illogical'
 
 // Create a new instance of the engine
 const opts = {
@@ -669,7 +644,7 @@ const engine = new Engine(opts)
 
 A function used to determine if the operand is a reference type, otherwise evaluated as a static value.
 
-```typescript
+```ts
 referencePredicate: (operand: string) => boolean
 ```
 
@@ -686,7 +661,7 @@ referencePredicate: (operand: string) => boolean
 
 A function used to transform the operand into the reference annotation stripped form. I.e. remove any annotation used to detect the reference type. E.g. "$Reference" => "Reference".
 
-```typescript
+```ts
 referenceTransform: (operand: string) => string
 ```
 
@@ -697,31 +672,38 @@ referenceTransform: (operand: string) => string
 
 Mapping of the operators. The key is unique operator key, and the value is the key used to represent the given operator in the raw expression.
 
-```typescript
+```ts
 operatorMapping: Map<symbol, string>
 ```
 
 **Default operator mapping:**
 
-```typescript
+```ts
 // Comparison
-;[OPERATOR_EQ, '=='][(OPERATOR_NE, '!=')][(OPERATOR_GT, '>')][
-  (OPERATOR_GE, '>=')
-][(OPERATOR_LT, '<')][(OPERATOR_LE, '<=')][(OPERATOR_IN, 'IN')][
-  (OPERATOR_NOT_IN, 'NOT IN')
-][(OPERATOR_PREFIX, 'PREFIX')][(OPERATOR_SUFFIX, 'SUFFIX')][
-  (OPERATOR_OVERLAP, 'OVERLAP')
-][(OPERATOR_UNDEFINED, 'UNDEFINED')][(OPERATOR_PRESENT, 'PRESENT')][
-  // Logical
-  (OPERATOR_AND, 'AND')
-][(OPERATOR_OR, 'OR')][(OPERATOR_NOR, 'NOR')][(OPERATOR_XOR, 'XOR')][
-  (OPERATOR_NOT, 'NOT')
-]
+;[OPERATOR_EQ, '==']
+;[OPERATOR_NE, '!=']
+;[(OPERATOR_GT, '>')]
+;[(OPERATOR_GE, '>=')]
+;[(OPERATOR_LT, '<')]
+;[(OPERATOR_LE, '<=')]
+;[(OPERATOR_IN, 'IN')]
+;[(OPERATOR_NOT_IN, 'NOT IN')]
+;[(OPERATOR_PREFIX, 'PREFIX')]
+;[(OPERATOR_SUFFIX, 'SUFFIX')]
+;[(OPERATOR_OVERLAP, 'OVERLAP')]
+;[(OPERATOR_UNDEFINED, 'UNDEFINED')]
+;[(OPERATOR_PRESENT, 'PRESENT')]
+// Logical
+;[(OPERATOR_AND, 'AND')]
+;[(OPERATOR_OR, 'OR')]
+;[(OPERATOR_NOR, 'NOR')]
+;[(OPERATOR_XOR, 'XOR')]
+;[(OPERATOR_NOT, 'NOT')]
 ```
 
 > The operator keys are unique symbols which could be imported from the engine package:
 
-```js
+```ts
 import {
   OPERATOR_EQ,
   OPERATOR_NE,
@@ -741,27 +723,15 @@ import {
   OPERATOR_NOR,
   OPERATOR_XOR,
   OPERATOR_NOT,
-} from '@briza/illogical'
+} from '@spaceavocado/illogical'
 ```
-
-## Breaking Changes
-
-### v1.4.2
-
-- Change on `@babel/env` preset to target `> 1%, node 12` this will remove some polyfills that were causing performance
-  problems in some projects.
-
-### v1.2.0
-
-- Removed **strict** mode from the Engine constructor options.
-  `const engine = new Engine(strictMode, opts);` -> `const engine = new Engine(opts);`
 
 ---
 
 ## Contributing
 
-See [contributing.md](https://github.com/briza-insurance/illogical/blob/master/contributing.md).
+See [contributing.md](contributing.md).
 
 ## License
 
-Illogical is released under the MIT license. See [license.txt](https://github.com/briza-insurance/illogical/blob/master/license.txt).
+Illogical is released under the MIT license. See [license.txt](license.txt).

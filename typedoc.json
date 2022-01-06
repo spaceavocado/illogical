@@ -1,4 +1,4 @@
 {
   "out": "docs",
-  "exclude": "**/__test__/*"
+  "exclude": "**/__tests__/*"
 }
