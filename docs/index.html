@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@briza/illogical</title>
-	<meta name="description" content="Documentation for @briza/illogical">
+	<title>@spaceavocado/illogical</title>
+	<meta name="description" content="Documentation for @spaceavocado/illogical">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
 	<script async src="assets/js/search.js" id="search-script"></script>
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">@briza/illogical</a>
+					<a href="index.html" class="title">@spaceavocado/illogical</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -50,7 +50,7 @@
 	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<h1>@briza/illogical</h1>
+			<h1>@spaceavocado/illogical</h1>
 		</div>
 	</div>
 </header>
@@ -63,14 +63,14 @@
 				</a>
 				<p>A micro conditional javascript engine used to parse the raw logical and comparison expressions, evaluate the expression in the given data context, and provide access to a text form of the given expressions.</p>
 				<blockquote>
-					<p>Revision: August 17, 2021.</p>
+					<p>Revision: Jan 5, 2022.</p>
 				</blockquote>
 				<a href="#about" id="about" style="color: inherit; text-decoration: none;">
 					<h2>About</h2>
 				</a>
 				<p>This project has been developed to provide a shared conditional logic between front-end and back-end code, stored in JSON or in any other data serialization format.</p>
 				<blockquote>
-					<p>Code documentation could be found here: <a href="https://briza-insurance.github.io/illogical/index.html">https://briza-insurance.github.io/illogical/index.html</a>.</p>
+					<p>Code documentation could be found here: <a href="https://spaceavocado.github.io/illogical/index.html">https://spaceavocado.github.io/illogical/index.html</a>.</p>
 				</blockquote>
 				<blockquote>
 					<p>The library is being build as <strong>CommonJS</strong> module and <strong>ESM</strong>.</p>
@@ -78,9 +78,9 @@
 				<a href="#installation-via-npm-or-yarn" id="installation-via-npm-or-yarn" style="color: inherit; text-decoration: none;">
 					<h2>Installation via NPM or Yarn</h2>
 				</a>
-				<pre><code class="language-sh"><span style="color: #000000">npm install -D @briza/illogical</span>
+				<pre><code class="language-sh"><span style="color: #000000">npm install -D @spaceavocado/illogical</span>
 </code></pre>
-				<pre><code class="language-sh"><span style="color: #000000">yarn add @briza/illogical -D</span>
+				<pre><code class="language-sh"><span style="color: #000000">yarn add @spaceavocado/illogical -D</span>
 </code></pre>
 				<p><strong>Table of Content</strong></p>
 				<hr>
@@ -153,14 +153,14 @@
 				<a href="#basic-usage" id="basic-usage" style="color: inherit; text-decoration: none;">
 					<h2>Basic Usage</h2>
 				</a>
-				<pre><code class="language-js"><span style="color: #008000">// Import the illogical engine</span>
-<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">Engine</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@briza/illogical&#039;</span>
+				<pre><code class="language-ts"><span style="color: #008000">// Import the illogical engine</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">illogical</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@spaceavocado/illogical&#039;</span>
 
 <span style="color: #008000">// Create a new instance of the engine</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">engine</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Engine</span><span style="color: #000000">()</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">i</span><span style="color: #000000"> = </span><span style="color: #795E26">illogical</span><span style="color: #000000">()</span>
 
 <span style="color: #008000">// Evaluate the raw expression</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">result</span><span style="color: #000000"> = </span><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">])</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">result</span><span style="color: #000000"> = </span><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">])</span>
 </code></pre>
 				<blockquote>
 					<p>For advanced usage, please <a href="#engine-options">Engine Options</a>.</p>
@@ -168,67 +168,49 @@
 				<a href="#evaluate" id="evaluate" style="color: inherit; text-decoration: none;">
 					<h3>Evaluate</h3>
 				</a>
-				<p>Evaluate comparison or logical expression as TRUE or FALSE result:</p>
-				<p><code>engine.evaluate(</code><a href="#comparison-expressions">Comparison Expression</a> or <a href="#logical-expressions">Logical Expression</a>, <a href="#evaluation-data-context">Evaluation Data Context</a><code>)</code> =&gt; <code>boolean</code></p>
+				<p>Evaluate comparison or logical expression:</p>
+				<p><code>i.evaluate(</code><a href="#comparison-expressions">Comparison Expression</a> or <a href="#logical-expressions">Logical Expression</a>, <a href="#evaluation-data-context">Evaluation Data Context</a><code>)</code> =&gt; <code>boolean</code></p>
 				<blockquote>
 					<p>Data context is optional.</p>
 				</blockquote>
 				<p><strong>Example</strong></p>
-				<pre><code class="language-js"><span style="color: #008000">// Comparison expression</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">])</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">])</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #0000FF">true</span><span style="color: #000000">])</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$name&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000"> })</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;UNDEFINED&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$RefA&#039;</span><span style="color: #000000">], {})</span>
+				<pre><code class="language-ts"><span style="color: #008000">// Comparison expression</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">])</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">])</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #0000FF">true</span><span style="color: #000000">])</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$name&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000"> })</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;UNDEFINED&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$RefA&#039;</span><span style="color: #000000">], {})</span>
 
 <span style="color: #008000">// Logical expression</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]])</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]])</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;OR&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$name&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]], {</span>
-<span style="color: #000000">  </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">})</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]])</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]])</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;OR&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$name&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]], { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000"> })</span>
 </code></pre>
 				<a href="#statement" id="statement" style="color: inherit; text-decoration: none;">
 					<h3>Statement</h3>
 				</a>
 				<p>Get expression string representation:</p>
-				<p><code>engine.statement(</code><a href="#comparison-expressions">Comparison Expression</a> or <a href="#logical-expressions">Logical Expression</a><code>)</code> =&gt; <code>string</code></p>
+				<p><code>i.statement(</code><a href="#comparison-expressions">Comparison Expression</a> or <a href="#logical-expressions">Logical Expression</a><code>)</code> =&gt; <code>string</code></p>
 				<p><strong>Example</strong></p>
-				<pre><code class="language-js"><span style="color: #008000">/* Comparison expression */</span>
+				<pre><code class="language-ts"><span style="color: #008000">/* Comparison expression */</span>
 
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">statement</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">])</span>
-<span style="color: #008000">// (5 == 5)</span>
-
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">statement</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">])</span>
-<span style="color: #008000">// (&quot;circle&quot; == &quot;circle&quot;)</span>
-
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">statement</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #0000FF">true</span><span style="color: #000000">])</span>
-<span style="color: #008000">// (true == true)</span>
-
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">statement</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$name&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000"> })</span>
-<span style="color: #008000">// ({name} == &quot;peter&quot;)</span>
-
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">statement</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;UNDEFINED&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$RefA&#039;</span><span style="color: #000000">])</span>
-<span style="color: #008000">// ({RefA} is UNDEFINED)</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">statement</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]) </span><span style="color: #008000">// (5 == 5)</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">statement</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// (&quot;circle&quot; == &quot;circle&quot;)</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">statement</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #0000FF">true</span><span style="color: #000000">]) </span><span style="color: #008000">// (true == true)</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">statement</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$name&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000"> }) </span><span style="color: #008000">// ({name} == &quot;peter&quot;)</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">statement</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;UNDEFINED&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$RefA&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// ({RefA} is UNDEFINED)</span>
 
 <span style="color: #008000">/* Logical expression */</span>
 
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">statement</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]])</span>
-<span style="color: #008000">// ((5 == 5) AND (10 == 10))</span>
-
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">statement</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]])</span>
-<span style="color: #008000">// ((&quot;circle&quot; == &quot;circle&quot;) AND (10 == 10))</span>
-
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">statement</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;OR&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$name&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]], {</span>
-<span style="color: #000000">  </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">})</span>
-<span style="color: #008000">// (({name} == &quot;peter&quot;) OR (5 == 10))</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">statement</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]]) </span><span style="color: #008000">// ((5 == 5) AND (10 == 10))</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">statement</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]]) </span><span style="color: #008000">// ((&quot;circle&quot; == &quot;circle&quot;) AND (10 == 10))</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">statement</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;OR&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$name&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]], { </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000"> }) </span><span style="color: #008000">// (({name} == &quot;peter&quot;) OR (5 == 10))</span>
 </code></pre>
 				<a href="#parse" id="parse" style="color: inherit; text-decoration: none;">
 					<h3>Parse</h3>
 				</a>
 				<p>Parse the expression into a evaluable object, i.e. it returns the parsed self-evaluable condition expression.</p>
-				<p><code>engine.parse(</code><a href="#comparison-expressions">Comparison Expression</a> or <a href="#logical-expressions">Logical Expression</a><code>)</code> =&gt; <code>evaluable</code></p>
+				<p><code>i.parse(</code><a href="#comparison-expressions">Comparison Expression</a> or <a href="#logical-expressions">Logical Expression</a><code>)</code> =&gt; <code>evaluable</code></p>
 				<a href="#evaluate-function" id="evaluate-function" style="color: inherit; text-decoration: none;">
 					<h4>Evaluate Function</h4>
 				</a>
@@ -237,12 +219,10 @@
 					<li><code>evaluable.toString()</code> please see <a href="#statement">Statement</a>.</li>
 				</ul>
 				<p><strong>Example</strong></p>
-				<pre><code class="language-js"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">evaluable</span><span style="color: #000000"> = </span><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">parse</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$name&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000">])</span>
+				<pre><code class="language-ts"><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">evaluable</span><span style="color: #000000"> = </span><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">parse</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$name&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000">])</span>
 
 <span style="color: #001080">evaluable</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">({ </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000"> }) </span><span style="color: #008000">// true</span>
-
-<span style="color: #001080">evaluable</span><span style="color: #000000">.</span><span style="color: #795E26">toString</span><span style="color: #000000">()</span>
-<span style="color: #008000">// ({name} == &quot;peter&quot;)</span>
+<span style="color: #001080">evaluable</span><span style="color: #000000">.</span><span style="color: #795E26">toString</span><span style="color: #000000">() </span><span style="color: #008000">// ({name} == &quot;peter&quot;)</span>
 </code></pre>
 				<a href="#simplify" id="simplify" style="color: inherit; text-decoration: none;">
 					<h3>Simplify</h3>
@@ -250,9 +230,8 @@
 				<p>Simplifies an expression with a given context. This is useful when you already have some of
 				the properties of context and wants to try to evaluate the expression.</p>
 				<p><strong>Example</strong></p>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">simplify</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$a&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$b&#039;</span><span style="color: #000000">, </span><span style="color: #098658">20</span><span style="color: #000000">]], { </span><span style="color: #001080">a:</span><span style="color: #000000"> </span><span style="color: #098658">10</span><span style="color: #000000"> }) </span><span style="color: #008000">// [&#039;==&#039;, &#039;$b&#039;, 20]</span>
-
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">simplify</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$a&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$b&#039;</span><span style="color: #000000">, </span><span style="color: #098658">20</span><span style="color: #000000">]], { </span><span style="color: #001080">a:</span><span style="color: #000000"> </span><span style="color: #098658">20</span><span style="color: #000000"> }) </span><span style="color: #008000">// false</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">simplify</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$a&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$b&#039;</span><span style="color: #000000">, </span><span style="color: #098658">20</span><span style="color: #000000">]], { </span><span style="color: #001080">a:</span><span style="color: #000000"> </span><span style="color: #098658">10</span><span style="color: #000000"> }) </span><span style="color: #008000">// [&#039;==&#039;, &#039;$b&#039;, 20]</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">simplify</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$a&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$b&#039;</span><span style="color: #000000">, </span><span style="color: #098658">20</span><span style="color: #000000">]], { </span><span style="color: #001080">a:</span><span style="color: #000000"> </span><span style="color: #098658">20</span><span style="color: #000000"> }) </span><span style="color: #008000">// false</span>
 </code></pre>
 				<p>Values not found in the context will cause the parent operand not to be evaluated and returned
 				as part of the simplified expression.</p>
@@ -260,7 +239,7 @@
 					present. You can provide a list of keys that will be strictly evaluated even if they are not
 				present in the context.</p>
 				<p><strong>Example</strong></p>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">simplify</span><span style="color: #000000">(</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">simplify</span><span style="color: #000000">(</span>
 <span style="color: #000000">  [</span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$a&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$b&#039;</span><span style="color: #000000">, </span><span style="color: #098658">20</span><span style="color: #000000">]],</span>
 <span style="color: #000000">  { </span><span style="color: #001080">a:</span><span style="color: #000000"> </span><span style="color: #098658">10</span><span style="color: #000000"> },</span>
 <span style="color: #000000">  [</span><span style="color: #A31515">&#039;b&#039;</span><span style="color: #000000">] </span><span style="color: #008000">// &#039;$b&#039; will be evaluated to undefined.</span>
@@ -269,7 +248,7 @@
 				<p>Alternatively we might want to do the opposite and strictly evaluate the expression for all referred
 				values not present in the context except for a specified list of optional keys.</p>
 				<p><strong>Example</strong></p>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">simplify</span><span style="color: #000000">(</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">simplify</span><span style="color: #000000">(</span>
 <span style="color: #000000">  [</span><span style="color: #A31515">&#039;OR&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$a&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$b&#039;</span><span style="color: #000000">, </span><span style="color: #098658">20</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$c&#039;</span><span style="color: #000000">, </span><span style="color: #098658">20</span><span style="color: #000000">]],</span>
 <span style="color: #000000">  { </span><span style="color: #001080">c:</span><span style="color: #000000"> </span><span style="color: #098658">10</span><span style="color: #000000"> },</span>
 <span style="color: #000000">  </span><span style="color: #0000FF">undefined</span><span style="color: #000000">,</span>
@@ -329,7 +308,7 @@
 					<li>.(Number): cast a given reference to Number.</li>
 				</ul>
 				<p><strong>Example</strong></p>
-				<pre><code class="language-js"><span style="color: #008000">// Data context</span>
+				<pre><code class="language-ts"><span style="color: #008000">// Data context</span>
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">ctx</span><span style="color: #000000"> = {</span>
 <span style="color: #000000">  </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;peter&#039;</span><span style="color: #000000">,</span>
 <span style="color: #000000">  </span><span style="color: #001080">country:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;canada&#039;</span><span style="color: #000000">,</span>
@@ -347,25 +326,25 @@
 <span style="color: #000000">}</span>
 
 <span style="color: #008000">// Evaluate an expression in the given data context</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;&gt;&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$age&#039;</span><span style="color: #000000">, </span><span style="color: #098658">20</span><span style="color: #000000">], </span><span style="color: #001080">ctx</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;&gt;&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$age&#039;</span><span style="color: #000000">, </span><span style="color: #098658">20</span><span style="color: #000000">], </span><span style="color: #001080">ctx</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
 
 <span style="color: #008000">// Evaluate an expression in the given data context</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$address.city&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;Toronto&#039;</span><span style="color: #000000">], </span><span style="color: #001080">ctx</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$address.city&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;Toronto&#039;</span><span style="color: #000000">], </span><span style="color: #001080">ctx</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
 
 <span style="color: #008000">// Accessing Array Element</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$options[1]&#039;</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">], </span><span style="color: #001080">ctx</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$options[1]&#039;</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">], </span><span style="color: #001080">ctx</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
 
 <span style="color: #008000">// Accessing Array Element via Reference</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$options[{index}]&#039;</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">], </span><span style="color: #001080">ctx</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$options[{index}]&#039;</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">], </span><span style="color: #001080">ctx</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
 
 <span style="color: #008000">// Nested Referencing</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$address.{segment}&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;Toronto&#039;</span><span style="color: #000000">], </span><span style="color: #001080">ctx</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$address.{segment}&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;Toronto&#039;</span><span style="color: #000000">], </span><span style="color: #001080">ctx</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
 
 <span style="color: #008000">// Composite Reference Key</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$shape{shapeType}&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">], </span><span style="color: #001080">ctx</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$shape{shapeType}&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">], </span><span style="color: #001080">ctx</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
 
 <span style="color: #008000">// Data Type Casting</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$age.(String)&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;21&#039;</span><span style="color: #000000">], </span><span style="color: #001080">ctx</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;$age.(String)&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;21&#039;</span><span style="color: #000000">], </span><span style="color: #001080">ctx</span><span style="color: #000000">) </span><span style="color: #008000">// true</span>
 </code></pre>
 				<a href="#operand-types" id="operand-types" style="color: inherit; text-decoration: none;">
 					<h3>Operand Types</h3>
@@ -376,7 +355,7 @@
 				</a>
 				<p>Simple value types: string, number, boolean.</p>
 				<p><strong>Example</strong></p>
-				<pre><code class="language-js"><span style="color: #000000">;[</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">][(</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">)][(</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #0000FF">true</span><span style="color: #000000">)]</span>
+				<pre><code class="language-ts"><span style="color: #000000">;[</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">][(</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">)][(</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #0000FF">true</span><span style="color: #000000">)]</span>
 </code></pre>
 				<a href="#reference" id="reference" style="color: inherit; text-decoration: none;">
 					<h4>Reference</h4>
@@ -439,9 +418,9 @@
 				<blockquote>
 					<p>Valid operand types: string, number, boolean.</p>
 				</blockquote>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]</span>
+				<pre><code class="language-tson">[&quot;==&quot;, 5, 5]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
 </code></pre>
 				<a href="#not-equal" id="not-equal" style="color: inherit; text-decoration: none;">
 					<h4>Not Equal</h4>
@@ -450,9 +429,9 @@
 				<blockquote>
 					<p>Valid operand types: string, number, boolean.</p>
 				</blockquote>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;!=&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;circle&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;square&quot;</span><span style="color: #000000">]</span>
+				<pre><code class="language-tson">[&quot;!=&quot;, &quot;circle&quot;, &quot;square&quot;]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;!=&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;square&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;!=&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;square&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
 </code></pre>
 				<a href="#greater-than" id="greater-than" style="color: inherit; text-decoration: none;">
 					<h4>Greater Than</h4>
@@ -461,9 +440,9 @@
 				<blockquote>
 					<p>Valid operand types: number.</p>
 				</blockquote>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;&gt;&quot;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]</span>
+				<pre><code class="language-tson">[&quot;&gt;&quot;, 10, 5]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;&gt;&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;&gt;&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
 </code></pre>
 				<a href="#greater-than-or-equal" id="greater-than-or-equal" style="color: inherit; text-decoration: none;">
 					<h4>Greater Than or Equal</h4>
@@ -472,9 +451,9 @@
 				<blockquote>
 					<p>Valid operand types: number.</p>
 				</blockquote>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;&gt;=&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]</span>
+				<pre><code class="language-tson">[&quot;&gt;=&quot;, 5, 5]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;&gt;=&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;&gt;=&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
 </code></pre>
 				<a href="#less-than" id="less-than" style="color: inherit; text-decoration: none;">
 					<h4>Less Than</h4>
@@ -483,9 +462,9 @@
 				<blockquote>
 					<p>Valid operand types: number.</p>
 				</blockquote>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;&lt;&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]</span>
+				<pre><code class="language-tson">[&quot;&lt;&quot;, 5, 10]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;&lt;&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;&lt;&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
 </code></pre>
 				<a href="#less-than-or-equal" id="less-than-or-equal" style="color: inherit; text-decoration: none;">
 					<h4>Less Than or Equal</h4>
@@ -494,9 +473,9 @@
 				<blockquote>
 					<p>Valid operand types: number.</p>
 				</blockquote>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;&lt;=&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]</span>
+				<pre><code class="language-tson">[&quot;&lt;=&quot;, 5, 5]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;&lt;=&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;&lt;=&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
 </code></pre>
 				<a href="#in" id="in" style="color: inherit; text-decoration: none;">
 					<h4>In</h4>
@@ -505,11 +484,11 @@
 				<blockquote>
 					<p>Valid operand types: number and number[] or string and string[].</p>
 				</blockquote>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;IN&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, [</span><span style="color: #098658">1</span><span style="color: #000000">,</span><span style="color: #098658">2</span><span style="color: #000000">,</span><span style="color: #098658">3</span><span style="color: #000000">,</span><span style="color: #098658">4</span><span style="color: #000000">,</span><span style="color: #098658">5</span><span style="color: #000000">]]</span>
-<span style="color: #000000">[</span><span style="color: #A31515">&quot;IN&quot;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;circle&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;square&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;triangle&quot;</span><span style="color: #000000">], </span><span style="color: #A31515">&quot;square&quot;</span><span style="color: #000000">]</span>
+				<pre><code class="language-tson">[&quot;IN&quot;, 5, [1,2,3,4,5]]
+[&quot;IN&quot;, [&quot;circle&quot;, &quot;square&quot;, &quot;triangle&quot;], &quot;square&quot;]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;IN&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">, </span><span style="color: #098658">4</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;IN&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;square&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;triangle&#039;</span><span style="color: #000000">], </span><span style="color: #A31515">&#039;square&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;IN&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">, </span><span style="color: #098658">4</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;IN&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;square&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;triangle&#039;</span><span style="color: #000000">], </span><span style="color: #A31515">&#039;square&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
 </code></pre>
 				<a href="#not-in" id="not-in" style="color: inherit; text-decoration: none;">
 					<h4>Not In</h4>
@@ -518,11 +497,11 @@
 				<blockquote>
 					<p>Valid operand types: number and number[] or string and string[].</p>
 				</blockquote>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;IN&quot;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, [</span><span style="color: #098658">1</span><span style="color: #000000">,</span><span style="color: #098658">2</span><span style="color: #000000">,</span><span style="color: #098658">3</span><span style="color: #000000">,</span><span style="color: #098658">4</span><span style="color: #000000">,</span><span style="color: #098658">5</span><span style="color: #000000">]]</span>
-<span style="color: #000000">[</span><span style="color: #A31515">&quot;IN&quot;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;circle&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;square&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;triangle&quot;</span><span style="color: #000000">], </span><span style="color: #A31515">&quot;oval&quot;</span><span style="color: #000000">]</span>
+				<pre><code class="language-tson">[&quot;IN&quot;, 10, [1,2,3,4,5]]
+[&quot;IN&quot;, [&quot;circle&quot;, &quot;square&quot;, &quot;triangle&quot;], &quot;oval&quot;]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;NOT IN&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">, </span><span style="color: #098658">4</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;NOT IN&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;square&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;triangle&#039;</span><span style="color: #000000">], </span><span style="color: #A31515">&#039;oval&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;NOT IN&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">, </span><span style="color: #098658">4</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;NOT IN&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;square&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;triangle&#039;</span><span style="color: #000000">], </span><span style="color: #A31515">&#039;oval&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
 </code></pre>
 				<a href="#prefix" id="prefix" style="color: inherit; text-decoration: none;">
 					<h4>Prefix</h4>
@@ -535,10 +514,10 @@
 					<li>Left operand is the PREFIX term.</li>
 					<li>Right operand is the tested word.</li>
 				</ul>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;PREFIX&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;hemi&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;hemisphere&quot;</span><span style="color: #000000">]</span>
+				<pre><code class="language-tson">[&quot;PREFIX&quot;, &quot;hemi&quot;, &quot;hemisphere&quot;]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PREFIX&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;hemi&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;hemisphere&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PREFIX&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;hemi&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;sphere&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// false</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PREFIX&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;hemi&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;hemisphere&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PREFIX&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;hemi&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;sphere&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// false</span>
 </code></pre>
 				<a href="#suffix" id="suffix" style="color: inherit; text-decoration: none;">
 					<h4>Suffix</h4>
@@ -551,10 +530,10 @@
 					<li>Left operand is the tested word.</li>
 					<li>Right operand is the SUFFIX term.</li>
 				</ul>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;SUFFIX&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;establishment&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;ment&quot;</span><span style="color: #000000">]</span>
+				<pre><code class="language-tson">[&quot;SUFFIX&quot;, &quot;establishment&quot;, &quot;ment&quot;]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;SUFFIX&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;establishment&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;ment&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;SUFFIX&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;establish&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;ment&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// false</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;SUFFIX&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;establishment&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;ment&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;SUFFIX&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;establish&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;ment&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// false</span>
 </code></pre>
 				<a href="#overlap" id="overlap" style="color: inherit; text-decoration: none;">
 					<h4>Overlap</h4>
@@ -563,39 +542,35 @@
 				<blockquote>
 					<p>Valid operand types number[] or string[].</p>
 				</blockquote>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;OVERLAP&quot;</span><span style="color: #000000">, [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">], [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">, </span><span style="color: #098658">4</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]</span>
-<span style="color: #000000">[</span><span style="color: #A31515">&quot;OVERLAP&quot;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;circle&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;square&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;triangle&quot;</span><span style="color: #000000">], [</span><span style="color: #A31515">&quot;square&quot;</span><span style="color: #000000">]]</span>
+				<pre><code class="language-tson">[&quot;OVERLAP&quot;, [1, 2], [1, 2, 3, 4, 5]]
+[&quot;OVERLAP&quot;, [&quot;circle&quot;, &quot;square&quot;, &quot;triangle&quot;], [&quot;square&quot;]]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;OVERLAP&#039;</span><span style="color: #000000">, [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">6</span><span style="color: #000000">], [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">, </span><span style="color: #098658">4</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&#039;OVERLAP&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  [</span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;square&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;triangle&#039;</span><span style="color: #000000">],</span>
-<span style="color: #000000">  [</span><span style="color: #A31515">&#039;square&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;oval&#039;</span><span style="color: #000000">],</span>
-<span style="color: #000000">]) </span><span style="color: #008000">// true</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;OVERLAP&#039;</span><span style="color: #000000">, [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">6</span><span style="color: #000000">], [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">, </span><span style="color: #098658">4</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;OVERLAP&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;square&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;triangle&#039;</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;square&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;oval&#039;</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
 </code></pre>
 				<a href="#undefined" id="undefined" style="color: inherit; text-decoration: none;">
 					<h4>Undefined</h4>
 				</a>
 				<p>Expression format: <code>[&quot;UNDEFINED&quot;, </code><a href="#reference">Reference Operand</a><code>]</code>.</p>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;UNDEFINED&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;$RefA&quot;</span><span style="color: #000000">]</span>
+				<pre><code class="language-tson">[&quot;UNDEFINED&quot;, &quot;$RefA&quot;]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;UNDEFINED&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], {}) </span><span style="color: #008000">// true</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;UNDEFINED&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">RefA:</span><span style="color: #000000"> </span><span style="color: #0000FF">undefined</span><span style="color: #000000"> }) </span><span style="color: #008000">// true</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;UNDEFINED&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">RefA:</span><span style="color: #000000"> </span><span style="color: #098658">10</span><span style="color: #000000"> }) </span><span style="color: #008000">// false</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;UNDEFINED&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], {}) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;UNDEFINED&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">RefA:</span><span style="color: #000000"> </span><span style="color: #0000FF">undefined</span><span style="color: #000000"> }) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;UNDEFINED&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">RefA:</span><span style="color: #000000"> </span><span style="color: #098658">10</span><span style="color: #000000"> }) </span><span style="color: #008000">// false</span>
 </code></pre>
 				<a href="#present" id="present" style="color: inherit; text-decoration: none;">
 					<h4>Present</h4>
 				</a>
 				<p>Evaluates as FALSE when the operand is UNDEFINED or NULL.</p>
 				<p>Expression format: <code>[&quot;PRESENT&quot;, </code><a href="#reference">Reference Operand</a><code>]</code>.</p>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;PRESENT&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;$RefA&quot;</span><span style="color: #000000">]</span>
+				<pre><code class="language-tson">[&quot;PRESENT&quot;, &quot;$RefA&quot;]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PRESENT&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], {}) </span><span style="color: #008000">// false</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PRESENT&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">RefA:</span><span style="color: #000000"> </span><span style="color: #0000FF">undefined</span><span style="color: #000000"> }) </span><span style="color: #008000">// false</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PRESENT&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">RefA:</span><span style="color: #000000"> </span><span style="color: #0000FF">null</span><span style="color: #000000"> }) </span><span style="color: #008000">// false</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PRESENT&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">RefA:</span><span style="color: #000000"> </span><span style="color: #098658">10</span><span style="color: #000000"> }) </span><span style="color: #008000">// true</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PRESENT&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">RefA:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }) </span><span style="color: #008000">// true</span>
-<span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PRESENT&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">RefA:</span><span style="color: #000000"> </span><span style="color: #098658">0</span><span style="color: #000000"> }) </span><span style="color: #008000">// true</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PRESENT&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], {}) </span><span style="color: #008000">// false</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PRESENT&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">RefA:</span><span style="color: #000000"> </span><span style="color: #0000FF">undefined</span><span style="color: #000000"> }) </span><span style="color: #008000">// false</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PRESENT&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">RefA:</span><span style="color: #000000"> </span><span style="color: #0000FF">null</span><span style="color: #000000"> }) </span><span style="color: #008000">// false</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PRESENT&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">RefA:</span><span style="color: #000000"> </span><span style="color: #098658">10</span><span style="color: #000000"> }) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PRESENT&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">RefA:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }) </span><span style="color: #008000">// true</span>
+<span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PRESENT&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">RefA:</span><span style="color: #000000"> </span><span style="color: #098658">0</span><span style="color: #000000"> }) </span><span style="color: #008000">// true</span>
 </code></pre>
 				<a href="#logical-expressions" id="logical-expressions" style="color: inherit; text-decoration: none;">
 					<h3>Logical Expressions</h3>
@@ -608,9 +583,9 @@
 				<blockquote>
 					<p>Valid operand types: <a href="#comparison-expressions">Comparison Expression</a> or <a href="#logical-expressions">Nested Logical Expression</a>.</p>
 				</blockquote>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;AND&quot;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]]</span>
+				<pre><code class="language-tson">[&quot;AND&quot;, [&quot;==&quot;, 5, 5], [&quot;==&quot;, 10, 10]]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
 </code></pre>
 				<a href="#or" id="or" style="color: inherit; text-decoration: none;">
 					<h4>Or</h4>
@@ -620,9 +595,9 @@
 				<blockquote>
 					<p>Valid operand types: <a href="#comparison-expressions">Comparison Expression</a> or <a href="#logical-expressions">Nested Logical Expression</a>.</p>
 				</blockquote>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;OR&quot;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]</span>
+				<pre><code class="language-tson">[&quot;OR&quot;, [&quot;==&quot;, 5, 5], [&quot;==&quot;, 10, 5]]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;OR&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;OR&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
 </code></pre>
 				<a href="#nor" id="nor" style="color: inherit; text-decoration: none;">
 					<h4>Nor</h4>
@@ -632,9 +607,9 @@
 				<blockquote>
 					<p>Valid operand types: <a href="#comparison-expressions">Comparison Expression</a> or <a href="#logical-expressions">Nested Logical Expression</a>.</p>
 				</blockquote>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;NOR&quot;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">1</span><span style="color: #000000">], [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]</span>
+				<pre><code class="language-tson">[&quot;NOR&quot;, [&quot;==&quot;, 5, 1], [&quot;==&quot;, 10, 5]]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;NOR&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">1</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;NOR&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">1</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
 </code></pre>
 				<a href="#xor" id="xor" style="color: inherit; text-decoration: none;">
 					<h4>Xor</h4>
@@ -644,13 +619,13 @@
 				<blockquote>
 					<p>Valid operand types: <a href="#comparison-expressions">Comparison Expression</a> or <a href="#logical-expressions">Nested Logical Expression</a>.</p>
 				</blockquote>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;XOR&quot;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]</span>
+				<pre><code class="language-tson">[&quot;XOR&quot;, [&quot;==&quot;, 5, 5], [&quot;==&quot;, 10, 5]]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;XOR&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;XOR&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
 </code></pre>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;XOR&quot;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]]</span>
+				<pre><code class="language-tson">[&quot;XOR&quot;, [&quot;==&quot;, 5, 5], [&quot;==&quot;, 10, 10]]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;XOR&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]]) </span><span style="color: #008000">// false</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;XOR&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]]) </span><span style="color: #008000">// false</span>
 </code></pre>
 				<a href="#not" id="not" style="color: inherit; text-decoration: none;">
 					<h4>Not</h4>
@@ -660,9 +635,9 @@
 				<blockquote>
 					<p>Valid operand types: <a href="#comparison-expressions">Comparison Expression</a> or <a href="#logical-expressions">Nested Logical Expression</a>.</p>
 				</blockquote>
-				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;NOT&quot;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]</span>
+				<pre><code class="language-tson">[&quot;NOT&quot;, [&quot;==&quot;, 5, 5]]
 </code></pre>
-				<pre><code class="language-js"><span style="color: #001080">engine</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;NOT&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
+				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;NOT&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
 </code></pre>
 				<a href="#engine-options" id="engine-options" style="color: inherit; text-decoration: none;">
 					<h2>Engine Options</h2>
@@ -672,8 +647,8 @@
 				</a>
 				<p>Below described, are individual options object properties which could be used individually. Any missing options will be substituted with the default options.</p>
 				<p><strong>Usage</strong></p>
-				<pre><code class="language-js"><span style="color: #008000">// Import the illogical engine</span>
-<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">Engine</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@briza/illogical&#039;</span>
+				<pre><code class="language-ts"><span style="color: #008000">// Import the illogical engine</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">Engine</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@spaceavocado/illogical&#039;</span>
 
 <span style="color: #008000">// Create a new instance of the engine</span>
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">opts</span><span style="color: #000000"> = {</span>
@@ -685,7 +660,7 @@
 					<h4>Reference Predicate</h4>
 				</a>
 				<p>A function used to determine if the operand is a reference type, otherwise evaluated as a static value.</p>
-				<pre><code class="language-typescript"><span style="color: #000000">referencePredicate: (</span><span style="color: #001080">operand</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">boolean</span>
+				<pre><code class="language-ts"><span style="color: #000000">referencePredicate: (</span><span style="color: #001080">operand</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">boolean</span>
 </code></pre>
 				<p><strong>Return value:</strong></p>
 				<ul>
@@ -700,7 +675,7 @@
 					<h4>Reference Transform</h4>
 				</a>
 				<p>A function used to transform the operand into the reference annotation stripped form. I.e. remove any annotation used to detect the reference type. E.g. &quot;$Reference&quot; =&gt; &quot;Reference&quot;.</p>
-				<pre><code class="language-typescript"><span style="color: #000000">referenceTransform: (</span><span style="color: #001080">operand</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">string</span>
+				<pre><code class="language-ts"><span style="color: #000000">referenceTransform: (</span><span style="color: #001080">operand</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">string</span>
 </code></pre>
 				<blockquote>
 					<p><strong>Default reference transform:</strong>
@@ -710,27 +685,34 @@
 					<h4>Operator Mapping</h4>
 				</a>
 				<p>Mapping of the operators. The key is unique operator key, and the value is the key used to represent the given operator in the raw expression.</p>
-				<pre><code class="language-typescript"><span style="color: #000000">operatorMapping: </span><span style="color: #267F99">Map</span><span style="color: #000000">&lt;</span><span style="color: #001080">symbol</span><span style="color: #000000">, </span><span style="color: #001080">string</span><span style="color: #000000">&gt;</span>
+				<pre><code class="language-ts"><span style="color: #000000">operatorMapping: </span><span style="color: #267F99">Map</span><span style="color: #000000">&lt;</span><span style="color: #001080">symbol</span><span style="color: #000000">, </span><span style="color: #001080">string</span><span style="color: #000000">&gt;</span>
 </code></pre>
 				<p><strong>Default operator mapping:</strong></p>
-				<pre><code class="language-typescript"><span style="color: #008000">// Comparison</span>
-<span style="color: #000000">;[</span><span style="color: #0070C1">OPERATOR_EQ</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">][(</span><span style="color: #0070C1">OPERATOR_NE</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;!=&#039;</span><span style="color: #000000">)][(</span><span style="color: #0070C1">OPERATOR_GT</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&gt;&#039;</span><span style="color: #000000">)][</span>
-<span style="color: #000000">  (</span><span style="color: #0070C1">OPERATOR_GE</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&gt;=&#039;</span><span style="color: #000000">)</span>
-<span style="color: #000000">][(</span><span style="color: #0070C1">OPERATOR_LT</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&lt;&#039;</span><span style="color: #000000">)][(</span><span style="color: #0070C1">OPERATOR_LE</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&lt;=&#039;</span><span style="color: #000000">)][(</span><span style="color: #0070C1">OPERATOR_IN</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;IN&#039;</span><span style="color: #000000">)][</span>
-<span style="color: #000000">  (</span><span style="color: #0070C1">OPERATOR_NOT_IN</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;NOT IN&#039;</span><span style="color: #000000">)</span>
-<span style="color: #000000">][(</span><span style="color: #0070C1">OPERATOR_PREFIX</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;PREFIX&#039;</span><span style="color: #000000">)][(</span><span style="color: #0070C1">OPERATOR_SUFFIX</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;SUFFIX&#039;</span><span style="color: #000000">)][</span>
-<span style="color: #000000">  (</span><span style="color: #0070C1">OPERATOR_OVERLAP</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;OVERLAP&#039;</span><span style="color: #000000">)</span>
-<span style="color: #000000">][(</span><span style="color: #0070C1">OPERATOR_UNDEFINED</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;UNDEFINED&#039;</span><span style="color: #000000">)][(</span><span style="color: #0070C1">OPERATOR_PRESENT</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;PRESENT&#039;</span><span style="color: #000000">)][</span>
-<span style="color: #000000">  </span><span style="color: #008000">// Logical</span>
-<span style="color: #000000">  (</span><span style="color: #0070C1">OPERATOR_AND</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">)</span>
-<span style="color: #000000">][(</span><span style="color: #0070C1">OPERATOR_OR</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;OR&#039;</span><span style="color: #000000">)][(</span><span style="color: #0070C1">OPERATOR_NOR</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;NOR&#039;</span><span style="color: #000000">)][(</span><span style="color: #0070C1">OPERATOR_XOR</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;XOR&#039;</span><span style="color: #000000">)][</span>
-<span style="color: #000000">  (</span><span style="color: #0070C1">OPERATOR_NOT</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;NOT&#039;</span><span style="color: #000000">)</span>
-<span style="color: #000000">]</span>
+				<pre><code class="language-ts"><span style="color: #008000">// Comparison</span>
+<span style="color: #000000">;[</span><span style="color: #0070C1">OPERATOR_EQ</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">]</span>
+<span style="color: #000000">;[</span><span style="color: #0070C1">OPERATOR_NE</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;!=&#039;</span><span style="color: #000000">]</span>
+<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_GT</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&gt;&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_GE</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&gt;=&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_LT</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&lt;&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_LE</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&lt;=&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_IN</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;IN&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_NOT_IN</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;NOT IN&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_PREFIX</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;PREFIX&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_SUFFIX</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;SUFFIX&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_OVERLAP</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;OVERLAP&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_UNDEFINED</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;UNDEFINED&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_PRESENT</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;PRESENT&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #008000">// Logical</span>
+<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_AND</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_OR</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;OR&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_NOR</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;NOR&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_XOR</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;XOR&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_NOT</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;NOT&#039;</span><span style="color: #000000">)]</span>
 </code></pre>
 				<blockquote>
 					<p>The operator keys are unique symbols which could be imported from the engine package:</p>
 				</blockquote>
-				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span>
+				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span>
 <span style="color: #000000">  </span><span style="color: #001080">OPERATOR_EQ</span><span style="color: #000000">,</span>
 <span style="color: #000000">  </span><span style="color: #001080">OPERATOR_NE</span><span style="color: #000000">,</span>
 <span style="color: #000000">  </span><span style="color: #001080">OPERATOR_GT</span><span style="color: #000000">,</span>
@@ -749,34 +731,17 @@
 <span style="color: #000000">  </span><span style="color: #001080">OPERATOR_NOR</span><span style="color: #000000">,</span>
 <span style="color: #000000">  </span><span style="color: #001080">OPERATOR_XOR</span><span style="color: #000000">,</span>
 <span style="color: #000000">  </span><span style="color: #001080">OPERATOR_NOT</span><span style="color: #000000">,</span>
-<span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@briza/illogical&#039;</span>
+<span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@spaceavocado/illogical&#039;</span>
 </code></pre>
-				<a href="#breaking-changes" id="breaking-changes" style="color: inherit; text-decoration: none;">
-					<h2>Breaking Changes</h2>
-				</a>
-				<a href="#v142" id="v142" style="color: inherit; text-decoration: none;">
-					<h3>v1.4.2</h3>
-				</a>
-				<ul>
-					<li>Change on <code>@babel/env</code> preset to target <code>&gt; 1%, node 12</code> this will remove some polyfills that were causing performance
-					problems in some projects.</li>
-				</ul>
-				<a href="#v120" id="v120" style="color: inherit; text-decoration: none;">
-					<h3>v1.2.0</h3>
-				</a>
-				<ul>
-					<li>Removed <strong>strict</strong> mode from the Engine constructor options.
-					<code>const engine = new Engine(strictMode, opts);</code> -&gt; <code>const engine = new Engine(opts);</code></li>
-				</ul>
 				<hr>
 				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
 					<h2>Contributing</h2>
 				</a>
-				<p>See <a href="https://github.com/briza-insurance/illogical/blob/master/contributing.md">contributing.md</a>.</p>
+				<p>See <a href="contributing.md">contributing.md</a>.</p>
 				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
 					<h2>License</h2>
 				</a>
-				<p>Illogical is released under the MIT license. See <a href="https://github.com/briza-insurance/illogical/blob/master/license.txt">license.txt</a>.</p>
+				<p>Illogical is released under the MIT license. See <a href="license.txt">license.txt</a>.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -786,16 +751,100 @@
 						<a href="modules.html">Modules</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/common_evaluable.html">common/evaluable</a>
+						<a href="modules/common_fp.html">common/fp</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_cond.html">common/fp/cond</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_constant.html">common/fp/constant</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_eq.html">common/fp/eq</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_head.html">common/fp/head</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_identity.html">common/fp/identity</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_ifElse.html">common/fp/if<wbr>Else</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_join.html">common/fp/join</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_map.html">common/fp/map</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_not.html">common/fp/not</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_pipe.html">common/fp/pipe</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_reduce.html">common/fp/reduce</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_rxMatches.html">common/fp/rx<wbr>Matches</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_slice.html">common/fp/slice</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_some.html">common/fp/some</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_stubTrue.html">common/fp/stub<wbr>True</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_types.html">common/fp/types</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/common_type_check.html">common/type-<wbr>check</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/common_util.html">common/util</a>
+						<a href="modules/common_type_check_isBoolean.html">common/type-<wbr>check/is<wbr>Boolean</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_type_check_isNull.html">common/type-<wbr>check/is<wbr>Null</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_type_check_isNullOrUndefined.html">common/type-<wbr>check/is<wbr>Null<wbr>OrUndefined</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_type_check_isNumber.html">common/type-<wbr>check/is<wbr>Number</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_type_check_isObject.html">common/type-<wbr>check/is<wbr>Object</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_type_check_isString.html">common/type-<wbr>check/is<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_type_check_isUndefined.html">common/type-<wbr>check/is<wbr>Undefined</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_types.html">common/types</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_utils.html">common/utils</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_utils_asExpected.html">common/utils/as<wbr>Expected</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_utils_hasOwnProperty.html">common/utils/has<wbr>Own<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/evaluable.html">evaluable</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/expression_comparison.html">expression/comparison</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/expression_comparison_comparison.html">expression/comparison/comparison</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/expression_comparison_eq.html">expression/comparison/eq</a>
@@ -834,13 +883,16 @@
 						<a href="modules/expression_comparison_suffix.html">expression/comparison/suffix</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/expression_comparison_undefined.html">expression/comparison/undefined</a>
+						<a href="modules/expression_comparison_undef.html">expression/comparison/undef</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/expression_logical.html">expression/logical</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/expression_logical_and.html">expression/logical/and</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/expression_logical_logical.html">expression/logical/logical</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/expression_logical_nor.html">expression/logical/nor</a>
@@ -858,6 +910,9 @@
 						<a href="modules/illogical.html">illogical</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/illogical.html">illogical</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/operand.html">operand</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -870,10 +925,13 @@
 						<a href="modules/operand_value.html">operand/value</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/options.html">options</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/parser.html">parser</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/parser_options.html">parser/options</a>
+						<a href="modules/parser_parser.html">parser/parser</a>
 					</li>
 				</ul>
 			</nav>
@@ -891,16 +949,16 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
 			</ul>
 		</div>
 	</div>
