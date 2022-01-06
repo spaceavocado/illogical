@@ -8,7 +8,7 @@ A micro conditional javascript engine used to parse the raw logical and comparis
 
 This project has been developed to provide a shared conditional logic between front-end and back-end code, stored in JSON or in any other data serialization format.
 
-> Code documentation could be found here: https://briza-insurance.github.io/illogical/index.html.
+> Code documentation could be found here: https://spaceavocado.github.io/illogical/index.html.
 
 > The library is being build as **CommonJS** module and **ESM**.
 
