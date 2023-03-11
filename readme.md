@@ -4,6 +4,10 @@ A micro conditional javascript engine used to parse the raw logical and comparis
 
 > Revision: Jan 5, 2022.
 
+Other implementations:
+- [GO](https://github.com/spaceavocado/goillogical)
+- [Python](https://github.com/spaceavocado/pyillogical)
+
 ## About
 
 This project has been developed to provide a shared conditional logic between front-end and back-end code, stored in JSON or in any other data serialization format.
