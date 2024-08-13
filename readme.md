@@ -7,6 +7,7 @@ A micro conditional javascript engine used to parse the raw logical and comparis
 Other implementations:
 - [GO](https://github.com/spaceavocado/goillogical)
 - [Python](https://github.com/spaceavocado/pyillogical)
+- [C#](https://github.com/spaceavocado/cillogical)
 
 ## About
 
