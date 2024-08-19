@@ -1,76 +1,76 @@
-import { identityEvaluable } from '../../../__tests__/helpers'
-import { Evaluable } from '../../../evaluable'
+import { Evaluable, isEvaluable } from '../../../evaluable'
 import { reference, value } from '../../../operand'
-import { defaultReferenceSerializeOptions } from '../../../operand/reference'
-import { Logical } from '../logical'
 import { nor } from '../nor'
 import { not } from '../not'
-import { KIND, xor } from '../xor'
+import { xor } from '../xor'
 
 describe('expression / logical / xor', () => {
   describe('constructor', () => {
     it.each<[Evaluable[]]>([[[]], [[value(1)]]])(
       '%p should throw',
       (operands) => {
-        expect(() => xor(...operands)).toThrowError()
+        expect(() => xor(operands)).toThrowError()
       }
     )
   })
 
   describe('evaluate', () => {
     it.each([
-      [xor(value(true), value(false)), true],
-      [xor(value(false), value(true)), true],
-      [xor(value(false), value(true), value(true)), false],
-      [xor(value(true), value(true)), false],
-      [xor(value(false), value(false)), false],
-    ])('%p should evaluate as %p', (evaluable, expected) => {
-      expect(evaluable.evaluate({})).toBe(expected)
+      // Truthy
+      [[value(true), value(false)], true],
+      [[value(false), value(true)], true],
+      [[value(false), value(false), value(true)], true],
+      [[value(false), value(true), value(false)], true],
+      [[value(true), value(false), value(false)], true],
+      // Falsy
+      [[value(false), value(false)], false],
+      [[value(true), value(true)], false],
+      [[value(true), value(true), value(false)], false],
+      [[value(true), value(false), value(true)], false],
+      [[value(false), value(true), value(true)], false],
+    ])('%p should evaluate as %p', (operands, expected) => {
+      const expression = xor(operands)
+      expect(expression.evaluate({})).toBe(expected)
     })
+  })
+
+  describe('evaluate - invalid operand', () => {
+    it.each([[[value(1), value(true)]], [[value(1), value('bogus')]]])(
+      '%p should throw',
+      (operands) => {
+        const expression = xor(operands)
+        expect(() => expression.evaluate({})).toThrowError()
+      }
+    )
   })
 
   describe('simplify', () => {
-    it.each<[Logical, Evaluable | boolean]>([
-      [xor(identityEvaluable(), value(false)), identityEvaluable()],
-      [
-        xor(identityEvaluable(), value(true), identityEvaluable()),
-        nor(identityEvaluable(), identityEvaluable()),
-      ],
-      [
-        xor(identityEvaluable(), value(true), value(false)),
-        not(identityEvaluable()),
-      ],
-      [xor(value(false), value(true)), true],
-      [xor(value(false), value(false)), false],
-      [xor(value(true), value(true), value(true)), false],
-      [xor(value(true), identityEvaluable(), value(true)), false],
-      [
-        xor(identityEvaluable(), value(false), identityEvaluable()),
-        xor(identityEvaluable(), identityEvaluable()),
-      ],
-    ])('%p should simplify to %p', (evaluable, expected) => {
-      expect(`${evaluable.simplify({})}`).toBe(`${expected}`)
-    })
-  })
-
-  describe('serialize', () => {
-    it.each<[Logical, unknown[]]>([
-      [xor(value(10), reference('test')), [10, '$test']],
-    ])('%p should serialize to %p', (evaluable, expected) => {
-      expect(
-        evaluable.serialize({
-          reference: defaultReferenceSerializeOptions,
-          operatorMapping: new Map([[KIND, 'XOR']]),
-        })
-      ).toEqual(['XOR', ...expected])
-    })
-  })
-
-  describe('toString', () => {
     it.each([
-      [xor(value(10), reference('ref'), value(5)), '(10 XOR {ref} XOR 5)'],
-    ])('%p should be %p', (evaluable, expected) => {
-      expect(evaluable.toString()).toBe(expected)
+      [[value(true), value(false)], true],
+      [[value(false), value(true)], true],
+      [[value(false), value(false)], false],
+      [[value(true), value(true)], false],
+      [[value(true), value(true), value(1)], false],
+      [[reference('RefA'), value(false)], true],
+      [[reference('Missing'), value(false)], reference('Missing')],
+      [[reference('Missing'), value(true)], not(reference('Missing'))],
+      [
+        [reference('Missing'), reference('Missing'), value(true)],
+        nor([reference('Missing'), reference('Missing')]),
+      ],
+      [
+        [reference('Missing'), reference('Missing')],
+        xor([reference('Missing'), reference('Missing')]),
+      ],
+      [[value(false), reference('invalid')], reference('invalid')],
+    ])('%p should evaluate as %p', (operands, expected) => {
+      const simplified = xor(operands).simplify({ RefA: true, invalid: 1 })
+
+      if (isEvaluable(simplified)) {
+        expect(`${expected}`).toBe(`${simplified}`)
+      } else {
+        expect(expected).toBe(simplified)
+      }
     })
   })
 })

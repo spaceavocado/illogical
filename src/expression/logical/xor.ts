@@ -1,35 +1,54 @@
-import { isBoolean } from '../../common/type-check'
-import { Evaluable } from '../../evaluable'
-import { Logical, logical } from './logical'
+import { isBoolean, isUndefined } from '../../common/type-check'
+import { Evaluable, isEvaluable } from '../../evaluable'
+import { logical } from './logical'
 import { nor } from './nor'
 import { not } from './not'
 
-export const KIND = Symbol('XOR')
-
-const xorOp = (a: boolean, b: boolean): boolean => (a || b) && !(a && b)
-
-export const xor = (...operands: Evaluable[]): Logical => {
+export const xor = (
+  operands: Evaluable[],
+  symbol = 'XOR',
+  notSymbol = 'NOT',
+  norSymbol = 'NOR'
+): Evaluable => {
   if (operands.length < 2) {
-    throw new Error('logical XOR expression must have at least 2 operands')
+    throw new Error(
+      'Non unary logical expression must have at least 2 operands'
+    )
   }
 
-  return logical({
-    kind: KIND,
-    operator: 'XOR',
-    operands,
-    evaluate: (context) =>
-      operands
-        .slice(1)
-        .reduce(
-          (result, operand) =>
-            xorOp(result, operand.evaluate(context) === true),
-          operands[0].evaluate(context) === true
-        ),
-    simplify: (context, options) => {
-      let truthy = 0
-      let evaluable: Evaluable[] = []
+  return logical(
+    'XOR',
+    symbol,
+    (operands, context) => {
+      let xor: boolean | undefined = undefined
+
       for (const operand of operands) {
-        const result = operand.simplify(context, options)
+        const result = operand.evaluate(context)
+        if (!isBoolean(result)) {
+          throw new Error(
+            `invalid evaluated operand "${result}" (${operand}) in XOR expression, must be boolean value`
+          )
+        }
+
+        if (isUndefined(xor)) {
+          xor = result
+          continue
+        }
+
+        if (xor && result) {
+          return false
+        }
+
+        xor = result ? true : xor
+      }
+      return xor ?? false
+    },
+    (operands, context) => {
+      let truthy = 0
+      const simplified: Evaluable[] = []
+
+      for (const operand of operands) {
+        const result = operand.simplify(context)
         if (isBoolean(result)) {
           if (result) {
             truthy++
@@ -40,22 +59,26 @@ export const xor = (...operands: Evaluable[]): Logical => {
           continue
         }
 
-        evaluable = [...evaluable, operand]
+        simplified.push(isEvaluable(simplified) ? simplified : operand)
       }
 
-      if (!evaluable.length) {
+      if (simplified.length === 0) {
         return truthy === 1
       }
-      if (evaluable.length === 1) {
+
+      if (simplified.length === 1) {
         if (truthy === 1) {
-          return not(evaluable[0])
+          return not(simplified[0], notSymbol)
         }
-        return evaluable[0]
+        return simplified[0]
       }
+
       if (truthy === 1) {
-        return nor(...evaluable)
+        return nor(simplified, norSymbol, notSymbol)
       }
-      return xor(...evaluable)
+
+      return xor(simplified, symbol, notSymbol, norSymbol)
     },
-  })
+    ...operands
+  )
 }
