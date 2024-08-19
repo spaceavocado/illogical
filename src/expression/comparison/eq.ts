@@ -1,12 +1,9 @@
 import { Evaluable } from '../../evaluable'
-import { Comparison, comparison } from './comparison'
+import { comparison } from './comparison'
 
-export const KIND = Symbol('EQ')
-
-export const eq = (left: Evaluable, right: Evaluable): Comparison =>
-  comparison({
-    operator: '==',
-    kind: KIND,
-    operands: [left, right],
-    comparison: (left, right) => left === right,
-  })
+export const eq = (
+  left: Evaluable,
+  right: Evaluable,
+  symbol = '=='
+): Evaluable =>
+  comparison('==', symbol, (left, right) => left === right, left, right)
