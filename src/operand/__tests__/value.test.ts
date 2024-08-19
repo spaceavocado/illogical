@@ -1,8 +1,8 @@
-import { EvaluatedPrimitive } from '../../evaluable'
+import { EvaluatedValue } from '../../evaluable'
 import { value } from '..'
 
 describe('operand / value', () => {
-  const testCases: EvaluatedPrimitive[] = [1, '1', true, null]
+  const testCases: EvaluatedValue[] = [1, '1', true, null, undefined]
 
   describe('evaluate', () => {
     it.each(testCases)('%p should evaluate as self', (operand) => {
@@ -28,6 +28,7 @@ describe('operand / value', () => {
       ['1', '"1"'],
       [true, 'true'],
       [null, 'null'],
+      [undefined, 'undefined'],
     ])('%p should be %p', (operand, expected) => {
       expect(value(operand).toString()).toBe(expected)
     })

@@ -9,17 +9,7 @@ import {
   some,
 } from '../common/fp'
 import { isString, isUndefined } from '../common/type-check/'
-import {
-  Evaluable,
-  Evaluated,
-  isEvaluable,
-  SerializeOptions,
-} from '../evaluable'
-
-export const KIND = Symbol('collection')
-
-export const isCollection = (evaluable: Evaluable): boolean =>
-  evaluable.kind === KIND
+import { Evaluable, Evaluated, flattenContext, isEvaluable } from '../evaluable'
 
 export type CollectionSerializeOptions = {
   escapedOperators: Set<string>
@@ -43,22 +33,27 @@ export const escapeOperator =
       ? `${options.escapeCharacter}${serialized}`
       : `${serialized}`
 
-export const collection = (items: Evaluable[]): Evaluable => {
+export const collection = (
+  items: Evaluable[],
+  serializeOptions: CollectionSerializeOptions = {
+    escapeCharacter: defaultEscapeCharacter,
+    escapedOperators: new Set<string>(),
+  }
+): Evaluable => {
   if (!items.length) {
     throw new Error('collection operand must have at least 1 item')
   }
 
-  if (items.some(isCollection)) {
-    throw new Error('collection cannot contain nested collection')
-  }
-
   return {
-    kind: KIND,
     evaluate: (context) =>
-      map((item: Evaluable) => item.evaluate(context))(items),
-    simplify: function (context, options) {
+      ((context) => map((item: Evaluable) => item.evaluate(context))(items))(
+        flattenContext(context)
+      ),
+    simplify: function (context) {
+      context = flattenContext(context)
+
       return pipe(
-        map((item: Evaluable) => item.simplify(context, options)),
+        map((item: Evaluable) => item.simplify(context)),
         ifElse(
           some(isEvaluable),
           () => this,
@@ -66,15 +61,15 @@ export const collection = (items: Evaluable[]): Evaluable => {
         )
       )(items)
     },
-    serialize: (options: SerializeOptions = {}) => [
+    serialize: () => [
       ifElse<Evaluated, string, Evaluated>(
-        shouldBeEscaped(options.collection),
-        escapeOperator(options.collection),
+        shouldBeEscaped(serializeOptions),
+        escapeOperator(serializeOptions),
         identity
-      )(head(items).serialize(options)),
+      )(head(items).serialize()),
       ...pipe(
         slice(1),
-        map((item: Evaluable) => item.serialize(options))
+        map((item: Evaluable) => item.serialize())
       )(items),
     ],
     toString: () =>
