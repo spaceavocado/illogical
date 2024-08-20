@@ -1,26 +1,13 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { isString, isUndefined } from '../common/type-check'
+import { entries, fromEntries, map, pipe, values } from '../common/fp'
+import { isArray, isString, isUndefined } from '../common/type-check'
 import { asExpected } from '../common/utils'
-import { Evaluable, isEvaluatedPrimitive, OperatorMapping } from '../evaluable'
+import { Evaluable, EvaluatedValue, isEvaluatedPrimitive } from '../evaluable'
 import {
-  Comparison,
   eq,
   ge,
   gt,
   In,
-  KIND_EQ,
-  KIND_GE,
-  KIND_GT,
-  KIND_IN,
-  KIND_LE,
-  KIND_LT,
-  KIND_NE,
-  KIND_NOT_IN,
-  KIND_OVERLAP,
-  KIND_PREFIX,
-  KIND_PRESENT,
-  KIND_SUFFIX,
-  KIND_UNDEF,
   le,
   lt,
   ne,
@@ -31,36 +18,80 @@ import {
   suffix,
   undef,
 } from '../expression/comparison'
+import { and, nor, not, or, xor } from '../expression/logical'
 import {
-  and,
-  KIND_AND,
-  KIND_NOR,
-  KIND_NOT,
-  KIND_OR,
-  KIND_XOR,
-  Logical,
-  nor,
-  not,
-  or,
-  xor,
-} from '../expression/logical'
-import { collection, reference, value } from '../operand'
-import { ReferenceSerializeOptions } from '../operand/reference'
-import { Options } from '../options'
+  collection,
+  DEFAULT_ESCAPE_CHARACTER,
+  reference,
+  value,
+} from '../operand'
+import {
+  defaultReferenceSerializeOptions,
+  ReferenceSerializeOptions,
+  ReferenceSimplifyOptions,
+} from '../operand/reference'
+
+export class UnexpectedExpressionInputError extends Error {}
+export class UnexpectedExpressionError extends Error {}
+export class UnexpectedOperandError extends Error {}
 
 export interface Parser {
   parse: (expression: unknown) => Evaluable
 }
 
-type LogicalOrComparison = (...operands: Evaluable[]) => Logical | Comparison
-
-type ParsingOptions = {
-  operatorExpressionMapping: Map<string, LogicalOrComparison>
-  referenceSerializeOptions: ReferenceSerializeOptions
-  escapeCharacter?: string
+export type Options = {
+  operatorHandlerMapping: Record<string, (operands: Evaluable[]) => Evaluable>
+  serializeOptions: ReferenceSerializeOptions
+  simplifyOptions?: ReferenceSimplifyOptions
+  escapeCharacter: string
+  escapedOperators: Set<string>
 }
 
-export const toReferencePath = (
+export enum Operator {
+  AND,
+  OR,
+  NOR,
+  XOR,
+  NOT,
+  EQ,
+  NE,
+  GT,
+  GE,
+  LT,
+  LE,
+  IN,
+  NOTIN,
+  OVERLAP,
+  PREFIX,
+  SUFFIX,
+  NONE,
+  PRESENT,
+}
+
+export const DEFAULT_OPERATOR_MAPPING = new Map<Operator, string>([
+  // Logical
+  [Operator.AND, 'AND'],
+  [Operator.OR, 'OR'],
+  [Operator.NOR, 'NOR'],
+  [Operator.XOR, 'XOR'],
+  [Operator.NOT, 'NOT'],
+  // Comparison
+  [Operator.EQ, '=='],
+  [Operator.NE, '!='],
+  [Operator.GT, '>'],
+  [Operator.GE, '>='],
+  [Operator.LT, '<'],
+  [Operator.LE, '<='],
+  [Operator.NONE, 'NONE'],
+  [Operator.PRESENT, 'PRESENT'],
+  [Operator.IN, 'IN'],
+  [Operator.NOTIN, 'NOT IN'],
+  [Operator.OVERLAP, 'OVERLAP'],
+  [Operator.PREFIX, 'PREFIX'],
+  [Operator.SUFFIX, 'SUFFIX'],
+])
+
+export const toReferenceAddress = (
   value: unknown,
   options: ReferenceSerializeOptions
 ): string | undefined => (isString(value) ? options.from(value) : undefined)
@@ -70,100 +101,216 @@ export const isEscaped = (value: unknown, escapeCharacter?: string): boolean =>
   isString(value) &&
   value.startsWith(escapeCharacter)
 
-export const createOperand = (
-  input: unknown | unknown[],
-  options: ParsingOptions
-): Evaluable => {
-  if (isUndefined(input)) {
-    throw new Error('invalid undefined operand')
-  }
+export const unaryExpression =
+  (handler: (operand: Evaluable) => Evaluable) =>
+  (operands: Evaluable[]): Evaluable =>
+    handler(operands[0])
 
-  if (Array.isArray(input)) {
-    if (!input.length) {
-      throw new Error('invalid undefined operand')
+export const binaryExpression =
+  (handler: (left: Evaluable, right: Evaluable) => Evaluable) =>
+  (operands: Evaluable[]): Evaluable =>
+    handler(operands[0], operands[1])
+
+export const multiaryExpression =
+  (handler: (operands: Evaluable[]) => Evaluable) =>
+  (operands: Evaluable[]): Evaluable =>
+    handler(operands)
+
+export const createOperand =
+  (options: Options) =>
+  (input: unknown): Evaluable => {
+    if (isArray(input)) {
+      if (!input.length) {
+        throw new UnexpectedOperandError('collection operand must have items')
+      }
+      return collection(input.map(parse(options)), {
+        escapedOperators: options.escapedOperators,
+        escapeCharacter: options.escapeCharacter,
+      })
     }
-    return collection(input.map(parse(options)))
+
+    const address = toReferenceAddress(input, options.serializeOptions)
+    if (address) {
+      return reference(
+        address,
+        options.serializeOptions,
+        options.simplifyOptions
+      )
+    }
+
+    if (!isUndefined(value) && !isEvaluatedPrimitive(input)) {
+      throw new UnexpectedOperandError(
+        'value operand must be a primitive value, number, text, bool and/or null'
+      )
+    }
+
+    return value(asExpected<EvaluatedValue>(input))
   }
 
-  const referencePath = toReferencePath(
-    input,
-    options.referenceSerializeOptions
-  )
-  if (referencePath) {
-    return reference(referencePath)
+export const createExpression =
+  (options: Options) =>
+  (expression: unknown[]): Evaluable => {
+    const [operator, ...operands] = expression
+
+    if (!isString(operator)) {
+      throw new UnexpectedExpressionError(
+        `expression must have a valid operator, got ${operator}`
+      )
+    }
+
+    if (!options.operatorHandlerMapping[operator]) {
+      throw new UnexpectedExpressionError(
+        `missing expression handler for ${operator}`
+      )
+    }
+
+    return options.operatorHandlerMapping[operator](
+      operands.map(parse(options))
+    )
   }
-
-  if (!isEvaluatedPrimitive(input)) {
-    throw new Error(`invalid operand, ${input}`)
-  }
-
-  return value(input)
-}
-
-export const createExpression = (
-  expression: unknown[],
-  options: ParsingOptions
-): Logical | Comparison | undefined => {
-  const [operator, ...operands] = expression
-  const evaluable = options.operatorExpressionMapping.get(`${operator}`)
-
-  if (evaluable) {
-    return evaluable(...operands.map(parse(options)))
-  }
-}
 
 export const parse =
-  (options: ParsingOptions) =>
-  (expression: unknown | unknown[]): Evaluable => {
-    if (!Array.isArray(expression) || expression.length < 2) {
-      return createOperand(expression, options)
+  (options: Options) =>
+  (expression?: unknown | unknown[]): Evaluable => {
+    if (isUndefined(expression)) {
+      throw new UnexpectedExpressionInputError('input cannot be undefined')
     }
 
-    const [first, ...rest] = expression
-    if (isEscaped(first, options.escapeCharacter)) {
-      return createOperand([first.slice(1), ...rest], options)
+    if (!isArray(expression)) {
+      return createOperand(options)(expression)
     }
 
-    return (
-      createExpression(expression, options) ??
-      createOperand(expression, options)
-    )
+    if (expression.length < 2) {
+      return createOperand(options)(expression)
+    }
+
+    if (
+      isString(expression[0]) &&
+      isEscaped(expression[0], options.escapeCharacter)
+    ) {
+      return createOperand(options)([
+        expression[0].slice(1),
+        ...expression.slice(1),
+      ])
+    }
+
+    try {
+      return createExpression(options)(expression)
+    } catch (error) {
+      if (error instanceof UnexpectedExpressionError) {
+        return createOperand(options)(expression)
+      }
+      throw error
+    }
   }
 
-export const operatorExpressionMapping = (
-  operatorMapping: OperatorMapping
-): Map<string, LogicalOrComparison> =>
-  new Map(
-    asExpected<[string, LogicalOrComparison][]>(
-      [
-        [operatorMapping.get(KIND_AND), and],
-        [operatorMapping.get(KIND_OR), or],
-        [operatorMapping.get(KIND_NOR), nor],
-        [operatorMapping.get(KIND_XOR), xor],
-        [operatorMapping.get(KIND_NOT), not],
-        [operatorMapping.get(KIND_EQ), eq],
-        [operatorMapping.get(KIND_NE), ne],
-        [operatorMapping.get(KIND_GE), ge],
-        [operatorMapping.get(KIND_GT), gt],
-        [operatorMapping.get(KIND_LE), le],
-        [operatorMapping.get(KIND_LT), lt],
-        [operatorMapping.get(KIND_IN), In],
-        [operatorMapping.get(KIND_NOT_IN), notIn],
-        [operatorMapping.get(KIND_OVERLAP), overlap],
-        [operatorMapping.get(KIND_PREFIX), prefix],
-        [operatorMapping.get(KIND_SUFFIX), suffix],
-        [operatorMapping.get(KIND_PRESENT), present],
-        [operatorMapping.get(KIND_UNDEF), undef],
-      ].filter(([operator]) => !!operator)
-    )
-  )
+export const options =
+  (
+    defaultOperatorMapping = DEFAULT_OPERATOR_MAPPING,
+    defaultSerializeOptions = defaultReferenceSerializeOptions,
+    defaultEscapeCharacter = DEFAULT_ESCAPE_CHARACTER
+  ) =>
+  (
+    operatorMapping?: Map<Operator, string>,
+    serializeOptions?: ReferenceSerializeOptions,
+    simplifyOptions?: ReferenceSimplifyOptions,
+    escapeCharacter?: string
+  ): Options => {
+    const operatorSymbol: Record<Operator, string> = pipe(
+      entries,
+      map(([operator, symbol]) => [
+        operator,
+        operatorMapping?.get(asExpected<Operator>(operator)) ?? symbol,
+      ]),
+      fromEntries
+    )(defaultOperatorMapping)
 
-export const parser = (options: Options): Parser => ({
-  parse: parse({
-    operatorExpressionMapping: operatorExpressionMapping(
-      options.operatorMapping
-    ),
-    referenceSerializeOptions: options.serialize.reference,
-    escapeCharacter: options.serialize.collection.escapeCharacter,
-  }),
+    return {
+      operatorHandlerMapping: {
+        // Logical
+        [operatorSymbol[Operator.AND]]: multiaryExpression((operands) =>
+          and(operands, operatorSymbol[Operator.AND])
+        ),
+        [operatorSymbol[Operator.OR]]: multiaryExpression((operands) =>
+          or(operands, operatorSymbol[Operator.OR])
+        ),
+        [operatorSymbol[Operator.NOR]]: multiaryExpression((operands) =>
+          nor(
+            operands,
+            operatorSymbol[Operator.NOR],
+            operatorSymbol[Operator.NOT]
+          )
+        ),
+        [operatorSymbol[Operator.XOR]]: multiaryExpression((operands) =>
+          xor(
+            operands,
+            operatorSymbol[Operator.XOR],
+            operatorSymbol[Operator.NOT],
+            operatorSymbol[Operator.NOR]
+          )
+        ),
+        [operatorSymbol[Operator.NOT]]: unaryExpression((operand) =>
+          not(operand, operatorSymbol[Operator.NOT])
+        ),
+        // Comparison
+        [operatorSymbol[Operator.EQ]]: binaryExpression((left, right) =>
+          eq(left, right, operatorSymbol[Operator.EQ])
+        ),
+        [operatorSymbol[Operator.NE]]: binaryExpression((left, right) =>
+          ne(left, right, operatorSymbol[Operator.NE])
+        ),
+        [operatorSymbol[Operator.GT]]: binaryExpression((left, right) =>
+          gt(left, right, operatorSymbol[Operator.GT])
+        ),
+        [operatorSymbol[Operator.GE]]: binaryExpression((left, right) =>
+          ge(left, right, operatorSymbol[Operator.GE])
+        ),
+        [operatorSymbol[Operator.LT]]: binaryExpression((left, right) =>
+          lt(left, right, operatorSymbol[Operator.LT])
+        ),
+        [operatorSymbol[Operator.LE]]: binaryExpression((left, right) =>
+          le(left, right, operatorSymbol[Operator.LE])
+        ),
+        [operatorSymbol[Operator.NONE]]: unaryExpression((operand) =>
+          undef(operand, operatorSymbol[Operator.NONE])
+        ),
+        [operatorSymbol[Operator.PRESENT]]: unaryExpression((operand) =>
+          present(operand, operatorSymbol[Operator.PRESENT])
+        ),
+        [operatorSymbol[Operator.IN]]: binaryExpression((left, right) =>
+          In(left, right, operatorSymbol[Operator.IN])
+        ),
+        [operatorSymbol[Operator.NOTIN]]: binaryExpression((left, right) =>
+          notIn(left, right, operatorSymbol[Operator.NOTIN])
+        ),
+        [operatorSymbol[Operator.OVERLAP]]: binaryExpression((left, right) =>
+          overlap(left, right, operatorSymbol[Operator.OVERLAP])
+        ),
+        [operatorSymbol[Operator.PREFIX]]: binaryExpression((left, right) =>
+          prefix(left, right, operatorSymbol[Operator.PREFIX])
+        ),
+        [operatorSymbol[Operator.SUFFIX]]: binaryExpression((left, right) =>
+          suffix(left, right, operatorSymbol[Operator.SUFFIX])
+        ),
+      },
+      serializeOptions: serializeOptions ?? defaultSerializeOptions,
+      simplifyOptions,
+      escapeCharacter: escapeCharacter ?? defaultEscapeCharacter,
+      escapedOperators: new Set<string>(values(operatorSymbol)),
+    }
+  }
+
+export const parser = (
+  operatorMapping?: Map<Operator, string>,
+  serializeOptions?: ReferenceSerializeOptions,
+  simplifyOptions?: ReferenceSimplifyOptions,
+  escapeCharacter?: string
+): Parser => ({
+  parse: parse(
+    options(
+      DEFAULT_OPERATOR_MAPPING,
+      defaultReferenceSerializeOptions,
+      DEFAULT_ESCAPE_CHARACTER
+    )(operatorMapping, serializeOptions, simplifyOptions, escapeCharacter)
+  ),
 })

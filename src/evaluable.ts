@@ -1,23 +1,31 @@
+import { cond, each, entries, pipe, stubTrue } from './common/fp'
 import {
+  isArray,
   isBoolean,
   isNull,
   isNullOrUndefined,
   isNumber,
+  isObject,
   isString,
   isUndefined,
 } from './common/type-check'
-import { CollectionSerializeOptions } from './operand/collection'
-import {
-  ReferenceSerializeOptions,
-  ReferenceSimplifyOptions,
-} from './operand/reference'
+import { asExpected, hasOwnProperty } from './common/utils'
 
 export type Expression = Evaluated
 export type Context = Record<string, unknown>
+export const FlattenContextKey: unique symbol = Symbol('FlattenContext')
+export type FlattenContext = Context & { [FlattenContextKey]: true }
 
 export type EvaluatedPrimitive = string | number | boolean | null
 export type EvaluatedValue = undefined | EvaluatedPrimitive
 export type Evaluated = EvaluatedValue | Array<Evaluated>
+
+export interface Evaluable {
+  evaluate(context?: Context): Evaluated
+  simplify(context?: Context): Evaluated | Evaluable
+  serialize(): Expression
+  toString(): string
+}
 
 export const isEvaluable = (value: unknown): value is Evaluable =>
   typeof value === 'object' && !isNullOrUndefined(value) && 'evaluate' in value
@@ -30,24 +38,36 @@ export const isEvaluatedPrimitive = (
 export const isEvaluatedValue = (value: unknown): value is EvaluatedValue =>
   isUndefined(value) || isEvaluatedPrimitive(value)
 
-export type OperatorMapping = Map<symbol, string>
+export const isFlattenContext = (
+  value: Context | FlattenContext | undefined
+): value is FlattenContext =>
+  !isUndefined(value) && hasOwnProperty(value, FlattenContextKey)
 
-export type SimplifyOptions = Partial<{
-  reference: ReferenceSimplifyOptions
-}>
+export const joinPath = (a: string, b: string): string =>
+  a.length == 0 ? b : `${a}.${b}`
 
-export type SerializeOptions = Partial<{
-  operatorMapping: OperatorMapping
-  reference: ReferenceSerializeOptions
-  collection: CollectionSerializeOptions
-}>
+export const flattenContext = (
+  context: Context | FlattenContext | undefined
+): FlattenContext | undefined => {
+  if (isUndefined(context) || isFlattenContext(context)) {
+    return context
+  }
 
-export interface Evaluable {
-  kind: symbol
-  evaluate(context: Context): Evaluated
-  simplify(context: Context, options?: SimplifyOptions): Evaluated | Evaluable
-  serialize(options?: SerializeOptions): Expression
-  toString(): string
+  const flatten: FlattenContext = { [FlattenContextKey]: true }
+  const lookup = (value: unknown, path: string): void =>
+    cond<unknown, void>([
+      [isArray, each((inner, index) => lookup(inner, `${path}[${index}]`))],
+      [
+        isObject,
+        pipe(
+          asExpected<Record<string, unknown>>,
+          entries,
+          each(([key, inner]) => lookup(inner, joinPath(path, key)))
+        ),
+      ],
+      [stubTrue, () => (flatten[path] = value)],
+    ])(value)
+
+  lookup(context, '')
+  return flatten
 }
-
-export const evaluable = (evaluable: Evaluable): Evaluable => evaluable
