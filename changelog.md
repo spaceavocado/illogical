@@ -1,5 +1,9 @@
 # illogical changelog
 
+## 2.1.0
+- Updated implementation to match implementation in other languages.
+- Add data type cast to Integer, Float and Boolean.
+
 ## 2.0.0
 
 - Removed classes, migrated to pure functions.

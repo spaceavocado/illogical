@@ -1,25 +1,19 @@
-import { Evaluable, evaluable } from '../../evaluable'
+import { Evaluable } from '../../evaluable'
 import { eq } from '../../expression/comparison'
 import { collection } from '../collection'
 import {
-  defaultEscapeCharacter,
+  DEFAULT_ESCAPE_CHARACTER,
   escapeOperator,
-  isCollection,
-  KIND,
   shouldBeEscaped,
 } from '../collection'
 import { reference } from '../reference'
-import { defaultReferenceSerializeOptions } from '../reference'
 import { value } from '../value'
 
 describe('operand / collection', () => {
   describe('constructor', () => {
-    it.each<[Evaluable[]]>([[[]], [[value(1), collection([value(1)])]]])(
-      '%p should throw',
-      (items) => {
-        expect(() => collection(items)).toThrowError()
-      }
-    )
+    it.each([[[]]])('%p should throw', (items) => {
+      expect(() => collection(items)).toThrowError()
+    })
   })
 
   describe('evaluate', () => {
@@ -52,25 +46,31 @@ describe('operand / collection', () => {
   })
 
   describe('serialize', () => {
+    const serializeOptions = {
+      escapedOperators: new Set(['==']),
+      escapeCharacter: DEFAULT_ESCAPE_CHARACTER,
+    }
+
     it.each<[Evaluable, (number | string)[]]>([
-      [collection([reference('test'), value(10)]), ['$test', 10]],
-      [collection([reference('refA'), value(10)]), ['$refA', 10]],
-      [collection([reference('refA'), value('testing')]), ['$refA', 'testing']],
-      [collection([value(20), value(10)]), [20, 10]],
       [
-        collection([value('=='), value(10), value(10)]),
-        [`${defaultEscapeCharacter}==`, 10, 10],
+        collection([reference('test'), value(10)], serializeOptions),
+        ['$test', 10],
+      ],
+      [
+        collection([reference('refA'), value(10)], serializeOptions),
+        ['$refA', 10],
+      ],
+      [
+        collection([reference('refA'), value('testing')], serializeOptions),
+        ['$refA', 'testing'],
+      ],
+      [collection([value(20), value(10)], serializeOptions), [20, 10]],
+      [
+        collection([value('=='), value(10), value(10)], serializeOptions),
+        [`${DEFAULT_ESCAPE_CHARACTER}==`, 10, 10],
       ],
     ])('%p should be serialized to %p', (evaluable, expected) => {
-      expect(
-        evaluable.serialize({
-          reference: defaultReferenceSerializeOptions,
-          collection: {
-            escapedOperators: new Set(['==']),
-            escapeCharacter: defaultEscapeCharacter,
-          },
-        })
-      ).toEqual(expected)
+      expect(evaluable.serialize()).toEqual(expected)
     })
 
     it('should use default serialization options', () => {
@@ -126,25 +126,5 @@ describe('operand / collection', () => {
         expect(escapeOperator(options)(serialized)).toBe(expected)
       }
     )
-  })
-
-  describe('isCollection', () => {
-    const mock = (kind: symbol) =>
-      evaluable({
-        kind,
-        evaluate: () => undefined,
-        serialize: () => undefined,
-        simplify: () => undefined,
-        toString: () => 'undefined',
-      })
-
-    test.each([
-      // Truthy
-      [mock(KIND), true],
-      // Falsy
-      [mock(Symbol()), false],
-    ])('%p should evaluate as %p', (value, expected) => {
-      expect(isCollection(value)).toBe(expected)
-    })
   })
 })

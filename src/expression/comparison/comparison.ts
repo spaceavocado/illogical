@@ -1,58 +1,43 @@
-import { ifElse, join, map, not, pipe, slice, some } from '../../common/fp'
-import { isUndefined } from '../../common/type-check'
-import { Optional } from '../../common/types'
-import { hasOwnProperty } from '../../common/utils'
-import { Context, Evaluable, Evaluated, isEvaluable } from '../../evaluable'
-
-export type Comparison = Omit<Evaluable, 'evaluate'> & {
-  operator: string
-  operands: Evaluable[]
-  evaluate(context: Context): boolean
-  comparison(...results: Evaluated[]): boolean
-}
+import { ifElse, map, not, pipe, some } from '../../common/fp'
+import {
+  Evaluable,
+  Evaluated,
+  flattenContext,
+  isEvaluable,
+} from '../../evaluable'
 
 export const comparison = (
-  evaluable: Omit<
-    Optional<Comparison, 'toString'>,
-    'serialize' | 'simplify' | 'evaluate'
-  >
-): Comparison => ({
-  ...evaluable,
+  operator: string,
+  symbol: string,
+  compare: (...results: Evaluated[]) => boolean,
+  ...operands: Evaluable[]
+): Evaluable => ({
   evaluate: (context) =>
-    evaluable.comparison(
-      ...map((operand: Evaluable) => operand.evaluate(context))(
-        evaluable.operands
-      )
-    ),
-  serialize: (options = {}) =>
-    ifElse<string | undefined, undefined, Evaluated>(
-      isUndefined,
-      () => {
-        throw new Error(`missing mapping for ${evaluable.operator} operator`)
-      },
-      (kind) => [
-        kind,
-        ...map((operand: Evaluable) => operand.serialize(options))(
-          evaluable.operands
-        ),
-      ]
-    )((options.operatorMapping ?? new Map()).get(evaluable.kind)),
-  simplify: function (context, option) {
+    ((context) =>
+      compare(
+        ...map((operand: Evaluable) => operand.evaluate(context))(operands)
+      ))(flattenContext(context)),
+  serialize: () => [
+    symbol,
+    ...map((operand: Evaluable) => operand.serialize())(operands),
+  ],
+  simplify: function (context) {
+    context = flattenContext(context)
+
     return pipe(
-      map((operand: Evaluable) => operand.simplify(context, option)),
+      map((operand: Evaluable) => operand.simplify(context)),
       ifElse(
         not(some(isEvaluable)),
-        (simplified: Evaluated[]) => evaluable.comparison(...simplified),
+        (simplified: Evaluated[]) => compare(...simplified),
         () => this
       )
-    )(evaluable.operands)
+    )(operands)
   },
-  toString: hasOwnProperty(evaluable, 'toString')
-    ? evaluable.toString
-    : () =>
-        `(${evaluable.operands[0].toString()} ${evaluable.operator} ${pipe(
-          slice(1),
-          map((operand: Evaluable) => operand.toString()),
-          join(', ')
-        )(evaluable.operands)})`,
+  toString: () => {
+    let result = `(${operands[0]} ${operator}`
+    if (operands.length > 1) {
+      result += ` ${operands.slice(1).join(' ')}`
+    }
+    return `${result})`
+  },
 })

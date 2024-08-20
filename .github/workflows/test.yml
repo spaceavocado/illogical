@@ -8,16 +8,16 @@ jobs:
     name: Continuous integration
     runs-on: ubuntu-latest
     container:
-      image: node:12-slim
+      image: node:20-slim
     steps:
       - uses: actions/checkout@v2
       - name: Install npm modules
-        run: npm i
+        run: yarn
       - name: Scan project for vulnerabilities
-        run: npm audit
+        run: yarn audit
       - name: Check licenses
-        run: npm run check-licenses
+        run: yarn check-licenses
       - name: Run test suite
-        run: npm t
+        run: yarn test
       - name: Run build
-        run: npm run build
+        run: yarn build

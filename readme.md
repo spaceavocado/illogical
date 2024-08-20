@@ -2,7 +2,7 @@
 
 A micro conditional javascript engine used to parse the raw logical and comparison expressions, evaluate the expression in the given data context, and provide access to a text form of the given expressions.
 
-> Revision: Jan 5, 2022.
+> Revision: Aug 20, 2024.
 
 Other implementations:
 - [GO](https://github.com/spaceavocado/goillogical)
@@ -33,49 +33,53 @@ yarn add @spaceavocado/illogical -D
 
 ---
 
-- [Basic Usage](#basic-usage)
-  - [Evaluate](#evaluate)
-  - [Statement](#statement)
-  - [Parse](#parse)
-    - [Evaluable Function](#evaluable-function)
-  - [Simplify](#simplify)
-- [Working with Expressions](#working-with-expressions)
-  - [Evaluation Data Context](#evaluation-data-context)
-  - [Operand Types](#operand-types)
-    - [Value](#value)
-    - [Reference](#reference)
-    - [Collection](#collection)
-  - [Comparison Expressions](#comparison-expressions)
-    - [Equal](#equal)
-    - [Not Equal](#not-equal)
-    - [Greater Than](#greater-than)
-    - [Greater Than or Equal](#greater-than-or-equal)
-    - [Less Than](#less-than)
-    - [Less Than or Equal](#less-than-or-equal)
-    - [In](#in)
-    - [Not In](#not-in)
-    - [Prefix](#prefix)
-    - [Suffix](#suffix)
-    - [Overlap](#overlap)
-    - [Undefined](#undefined)
-    - [Present](#present)
-  - [Logical Expressions](#logical-expressions)
-    - [And](#and)
-    - [Or](#or)
-    - [Nor](#nor)
-    - [Xor](#xor)
-    - [Not](#not)
-- [Engine Options](#engine-options)
-  - [Parser Options](#parser-options)
-    - [Reference Predicate](#reference-predicate)
-    - [Reference Transform](#reference-transform)
-    - [Operator Mapping](#operator-mapping)
-- [Breaking Changes](#breaking-changes)
-  - [v1.2.0](#v120)
-  - [v1.4.2](#v142)
-- [Contributing](#contributing)
-  - [Pull Request Process](#pull-request-process)
-- [License](#license)
+- [illogical](#illogical)
+  - [About](#about)
+  - [Installation via NPM or Yarn](#installation-via-npm-or-yarn)
+  - [Basic Usage](#basic-usage)
+    - [Evaluate](#evaluate)
+    - [Statement](#statement)
+    - [Parse](#parse)
+      - [Evaluate Function](#evaluate-function)
+    - [Simplify](#simplify)
+  - [Working with Expressions](#working-with-expressions)
+    - [Evaluation Data Context](#evaluation-data-context)
+      - [Accessing Array Element:](#accessing-array-element)
+      - [Accessing Array Element via Reference:](#accessing-array-element-via-reference)
+      - [Nested Referencing](#nested-referencing)
+      - [Composite Reference Key](#composite-reference-key)
+      - [Data Type Casting](#data-type-casting)
+    - [Operand Types](#operand-types)
+      - [Value](#value)
+      - [Reference](#reference)
+      - [Collection](#collection)
+    - [Comparison Expressions](#comparison-expressions)
+      - [Equal](#equal)
+      - [Not Equal](#not-equal)
+      - [Greater Than](#greater-than)
+      - [Greater Than or Equal](#greater-than-or-equal)
+      - [Less Than](#less-than)
+      - [Less Than or Equal](#less-than-or-equal)
+      - [In](#in)
+      - [Not In](#not-in)
+      - [Prefix](#prefix)
+      - [Suffix](#suffix)
+      - [Overlap](#overlap)
+      - [Undefined](#undefined)
+      - [Present](#present)
+    - [Logical Expressions](#logical-expressions)
+      - [And](#and)
+      - [Or](#or)
+      - [Nor](#nor)
+      - [Xor](#xor)
+      - [Not](#not)
+  - [Engine Options](#engine-options)
+    - [Parser Options](#parser-options)
+      - [Reference Predicate](#reference-predicate)
+      - [Reference Transform](#reference-transform)
+      - [Operator Mapping](#operator-mapping)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ---
 
@@ -252,6 +256,9 @@ Supported data type conversions:
 
 - .(String): cast a given reference to String.
 - .(Number): cast a given reference to Number.
+- .(Integer): cast a given reference to whole number.
+- .(Float): cast a given reference to floating point number.
+- .(Boolean): cast a given reference to boolean value.
 
 **Example**
 
@@ -687,50 +694,31 @@ operatorMapping: Map<symbol, string>
 
 ```ts
 // Comparison
-;[OPERATOR_EQ, '==']
-;[OPERATOR_NE, '!=']
-;[(OPERATOR_GT, '>')]
-;[(OPERATOR_GE, '>=')]
-;[(OPERATOR_LT, '<')]
-;[(OPERATOR_LE, '<=')]
-;[(OPERATOR_IN, 'IN')]
-;[(OPERATOR_NOT_IN, 'NOT IN')]
-;[(OPERATOR_PREFIX, 'PREFIX')]
-;[(OPERATOR_SUFFIX, 'SUFFIX')]
-;[(OPERATOR_OVERLAP, 'OVERLAP')]
-;[(OPERATOR_UNDEFINED, 'UNDEFINED')]
-;[(OPERATOR_PRESENT, 'PRESENT')]
+;[Operator.EQ, '==']
+;[Operator.NE, '!=']
+;[(Operator.GT, '>')]
+;[(Operator.GE, '>=')]
+;[(Operator.LT, '<')]
+;[(Operator.LE, '<=')]
+;[(Operator.IN, 'IN')]
+;[(Operator.NOT_IN, 'NOT IN')]
+;[(Operator.PREFIX, 'PREFIX')]
+;[(Operator.SUFFIX, 'SUFFIX')]
+;[(Operator.OVERLAP, 'OVERLAP')]
+;[(Operator.UNDEFINED, 'UNDEFINED')]
+;[(Operator.PRESENT, 'PRESENT')]
 // Logical
-;[(OPERATOR_AND, 'AND')]
-;[(OPERATOR_OR, 'OR')]
-;[(OPERATOR_NOR, 'NOR')]
-;[(OPERATOR_XOR, 'XOR')]
-;[(OPERATOR_NOT, 'NOT')]
+;[(Operator.AND, 'AND')]
+;[(Operator.OR, 'OR')]
+;[(Operator.NOR, 'NOR')]
+;[(Operator.XOR, 'XOR')]
+;[(Operator.NOT, 'NOT')]
 ```
 
 > The operator keys are unique symbols which could be imported from the engine package:
 
 ```ts
-import {
-  OPERATOR_EQ,
-  OPERATOR_NE,
-  OPERATOR_GT,
-  OPERATOR_GE,
-  OPERATOR_LT,
-  OPERATOR_LE,
-  OPERATOR_IN,
-  OPERATOR_NOT_IN,
-  OPERATOR_PREFIX,
-  OPERATOR_SUFFIX,
-  OPERATOR_OVERLAP,
-  OPERATOR_UNDEFINED,
-  OPERATOR_PRESENT,
-  OPERATOR_AND,
-  OPERATOR_OR,
-  OPERATOR_NOR,
-  OPERATOR_XOR,
-  OPERATOR_NOT,
-} from '@spaceavocado/illogical'
+import type { Operator } from '@spaceavocado/illogical'
 ```
 
 ---

@@ -1,65 +1,78 @@
-import { asExpected } from '../common/utils'
-import { Expression } from '../evaluable'
-import { eq, ne } from '../expression/comparison'
-import { and, KIND_AND } from '../expression/logical'
+import { isEvaluable } from '../evaluable'
+import { eq } from '../expression/comparison'
+import { and } from '../expression/logical'
 import { illogical as createIllogical } from '../illogical'
-import { reference, value } from '../operand'
+import { collection, reference, value } from '../operand'
+import { defaultReferenceSerializeOptions } from '../operand/reference'
+import { DEFAULT_OPERATOR_MAPPING, Operator } from '../parser/parser'
 
 describe('illogical', () => {
   const illogical = createIllogical()
-  const context = {
-    refA: 'resolvedA',
-  }
-
-  describe('evaluate', () => {
-    it.each([
-      [1, 1],
-      [true, true],
-      ['value', 'value'],
-      ['$refA', 'resolvedA'],
-      [null, null],
-      [['==', 1, 1], true],
-      [['==', '$refA', 'resolvedA'], true],
-      [['AND', ['==', 1, 1], ['!=', 2, 1]], true],
-    ])('%p should evaluate as %p', (expression, expected) => {
-      expect(illogical.evaluate(expression, context)).toBe(expected)
-    })
-
-    it.each([undefined, () => true, {}, [], Symbol(), new Date()])(
-      '%p should throw',
-      (expression) => {
-        expect(() =>
-          illogical.evaluate(asExpected<Expression>(expression), context)
-        ).toThrowError()
-      }
-    )
-  })
+  const mockAddress = defaultReferenceSerializeOptions.to
 
   describe('parse', () => {
     it.each([
       [1, value(1)],
-      [true, value(true)],
-      ['value', value('value')],
-      ['$refA', reference('refA')],
-      [null, value(null)],
-      [['==', 1, 1], eq(value(1), value(1))],
-      [['==', '$refA', 'resolvedA'], eq(reference('refA'), value('resolvedA'))],
+      [mockAddress('path'), reference('path')],
+      [[1], collection([value(1)])],
       [
-        ['AND', ['==', 1, 1], ['!=', 2, 1]],
-        and(eq(value(1), value(1)), ne(value(2), value(1))),
+        [DEFAULT_OPERATOR_MAPPING.get(Operator.EQ), 1, 1],
+        eq(value(1), value(1)),
       ],
-    ])('%p should parse as %p', (expression, expected) => {
+      [
+        [DEFAULT_OPERATOR_MAPPING.get(Operator.AND), true, true],
+        and([value(true), value(true)]),
+      ],
+    ])('%p should resolve as %p', (expression, expected) => {
       expect(`${illogical.parse(expression)}`).toBe(`${expected}`)
     })
+  })
 
-    it.each([undefined, () => true, {}, [], Symbol(), new Date()])(
-      '%p should throw',
-      (expression) => {
-        expect(() =>
-          illogical.parse(asExpected<Expression>(expression))
-        ).toThrowError()
+  describe('evaluate', () => {
+    it.each([
+      [1, 1],
+      [mockAddress('path'), 'value'],
+      [[1], [1]],
+      [[DEFAULT_OPERATOR_MAPPING.get(Operator.EQ), 1, 1], true],
+      [[DEFAULT_OPERATOR_MAPPING.get(Operator.AND), true, false], false],
+    ])('%p should resolve as %p', (expression, expected) => {
+      expect(illogical.evaluate(expression, { path: 'value' })).toStrictEqual(
+        expected
+      )
+    })
+  })
+
+  describe('simplify', () => {
+    it.each([
+      [1, 1],
+      [mockAddress('path'), 'value'],
+      [mockAddress('nested.inner'), 2],
+      [mockAddress('list[1]'), 3],
+      [mockAddress('missing'), reference('missing')],
+      [[1], [1]],
+      [[DEFAULT_OPERATOR_MAPPING.get(Operator.EQ), 1, 1], true],
+      [[DEFAULT_OPERATOR_MAPPING.get(Operator.AND), true, true], true],
+      [
+        [
+          DEFAULT_OPERATOR_MAPPING.get(Operator.AND),
+          true,
+          mockAddress('missing'),
+        ],
+        reference('missing'),
+      ],
+    ])('%p should resolve as %p', (expression, expected) => {
+      const simplified = illogical.simplify(expression, {
+        path: 'value',
+        nested: { inner: 2 },
+        list: [1, 3],
+      })
+
+      if (isEvaluable(simplified)) {
+        expect(`${expected}`).toBe(`${simplified}`)
+      } else {
+        expect(expected).toStrictEqual(simplified)
       }
-    )
+    })
   })
 
   describe('statement', () => {
@@ -67,73 +80,95 @@ describe('illogical', () => {
       [1, '1'],
       [true, 'true'],
       ['value', '"value"'],
-      ['$refA', '{refA}'],
-      [null, 'null'],
-      [['==', 1, 1], '(1 == 1)'],
-      [['==', '$refA', 'resolvedA'], '({refA} == "resolvedA")'],
-      [['AND', ['==', 1, 1], ['!=', 2, 1]], '((1 == 1) AND (2 != 1))'],
-    ])('%p should create statement %p', (expression, expected) => {
-      expect(illogical.statement(expression)).toBe(expected)
+      [mockAddress('refA'), '{refA}'],
+      [[1], '[1]'],
+      [
+        [DEFAULT_OPERATOR_MAPPING.get(Operator.EQ), mockAddress('refA'), 1],
+        '({refA} == 1)',
+      ],
+      [
+        [
+          DEFAULT_OPERATOR_MAPPING.get(Operator.AND),
+          [DEFAULT_OPERATOR_MAPPING.get(Operator.EQ), 1, 1],
+          [DEFAULT_OPERATOR_MAPPING.get(Operator.NE), 2, 1],
+        ],
+        '((1 == 1) AND (2 != 1))',
+      ],
+    ])('%p should resolve as %p', (expression, expected) => {
+      expect(`${illogical.statement(expression)}`).toBe(`${expected}`)
     })
-
-    it.each([undefined, () => true, {}, [], Symbol(), new Date()])(
-      '%p should throw',
-      (expression) => {
-        expect(() =>
-          illogical.statement(asExpected<Expression>(expression))
-        ).toThrowError()
-      }
-    )
   })
 
-  describe('simplify', () => {
+  describe('operator mapping', () => {
     it.each([
-      [1, 1],
-      [true, true],
-      ['value', 'value'],
-      ['$refA', 'resolvedA'],
-      ['$undefined', '$undefined'],
-      [null, null],
-      [['==', 1, 1], true],
-      [['==', '$refA', 'resolvedA'], true],
-      [
-        ['==', '$undefined', 'resolvedA'],
-        ['==', '$undefined', 'resolvedA'],
-      ],
-      [
-        ['AND', ['==', 1, 1], ['!=', '$undefined', 2]],
-        ['!=', '$undefined', 2],
-      ],
-    ])('%p should simplify as %p', (expression, expected) => {
-      expect(illogical.simplify(expression, context)).toStrictEqual(expected)
-    })
+      [['IS', 1, 1], true],
+      [['IS', 1, 2], false],
+    ])('%p should resolve as %p', (expression, expected) => {
+      const operatorMapping = new Map<Operator, string>(
+        DEFAULT_OPERATOR_MAPPING
+      )
+      operatorMapping.set(Operator.EQ, 'IS')
 
-    it('should use ignored path', () => {
-      expect(
-        illogical.simplify(
-          ['AND', ['==', '$refA', 1], ['!=', '$refB', 2]],
-          context,
-          ['refB']
-        )
-      ).toStrictEqual(false)
+      const illogical = createIllogical({ operatorMapping })
+      expect(illogical.evaluate(expression)).toBe(expected)
     })
-
-    it.each([undefined, () => true, {}, [], Symbol(), new Date()])(
-      '%p should throw',
-      (expression) => {
-        expect(() =>
-          illogical.simplify(asExpected<Expression>(expression), context)
-        ).toThrowError()
-      }
-    )
   })
 
-  it('should use custom options', () => {
-    expect(
-      createIllogical({ operatorMapping: new Map([[KIND_AND, '&']]) }).evaluate(
-        ['&', 1, 1],
-        {}
-      )
-    ).toBe(true)
+  describe('serialize options', () => {
+    it.each([
+      ['__ref', reference('ref')],
+      ['$ref', value('$ref')],
+    ])('%p should resolve as %p', (expression, expected) => {
+      const serializeOptions = {
+        from: (operand: string) =>
+          operand.length > 2 && operand.startsWith('__')
+            ? operand.slice(2)
+            : undefined,
+        to: (operand: string) => `__${operand}`,
+      }
+
+      const illogical = createIllogical({ serializeOptions })
+      const parsed = illogical.parse(expression)
+      const serialized = parsed.serialize()
+
+      expect(`${parsed}`).toBe(`${expected}`)
+      expect(serialized).toBe(expression)
+    })
+  })
+
+  describe('simplify options', () => {
+    it.each([
+      [mockAddress('refA'), 1],
+      [mockAddress('refB'), reference('refB')],
+      [mockAddress('ignored'), reference('ignored')],
+    ])('%p should resolve as %p', (expression, expected) => {
+      const illogical = createIllogical({
+        simplifyOptions: {
+          ignoredPaths: ['ignored', /^refB/],
+        },
+      })
+      const simplified = illogical.simplify(expression, {
+        refA: 1,
+        refB: 2,
+        ignored: 3,
+      })
+
+      if (isEvaluable(simplified)) {
+        expect(`${expected}`).toBe(`${simplified}`)
+      } else {
+        expect(expected).toStrictEqual(simplified)
+      }
+    })
+  })
+
+  describe('escape character', () => {
+    it.each([[['*AND', 1, 1], collection([value('AND'), value(1), value(1)])]])(
+      '%p should resolve as %p',
+      (expression, expected) => {
+        const illogical = createIllogical({ escapeCharacter: '*' })
+
+        expect(`${illogical.parse(expression)}`).toBe(`${expected}`)
+      }
+    )
   })
 })

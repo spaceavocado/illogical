@@ -1,63 +1,62 @@
-import { identityEvaluable } from '../../../__tests__/helpers'
-import { Evaluable } from '../../../evaluable'
+import { Evaluable, isEvaluable } from '../../../evaluable'
 import { reference, value } from '../../../operand'
-import { defaultReferenceSerializeOptions } from '../../../operand/reference'
-import { and, KIND } from '../and'
-import { Logical } from '../logical'
+import { and } from '../and'
 
 describe('expression / logical / and', () => {
   describe('constructor', () => {
     it.each<[Evaluable[]]>([[[]], [[value(1)]]])(
       '%p should throw',
       (operands) => {
-        expect(() => and(...operands)).toThrowError()
+        expect(() => and(operands)).toThrowError()
       }
     )
   })
 
   describe('evaluate', () => {
     it.each([
-      [and(value(true), value(true)), true],
-      [and(value(true), value(false)), false],
-      [and(value(false), value(true)), false],
-      [and(value(false), value(false)), false],
-    ])('%p should evaluate as %p', (evaluable, expected) => {
-      expect(evaluable.evaluate({})).toBe(expected)
+      // Truthy
+      [[value(true), value(true)], true],
+      [[value(true), value(true), value(true)], true],
+      // Falsy
+      [[value(true), value(false)], false],
+      [[value(false), value(true)], false],
+      [[value(false), value(false)], false],
+    ])('%p should evaluate as %p', (operands, expected) => {
+      const expression = and(operands)
+      expect(expression.evaluate({})).toBe(expected)
+    })
+  })
+
+  describe('evaluate - invalid operand', () => {
+    it.each([
+      [[value(true), value(1)]],
+      [[value(1), value(true)]],
+      [[value(1), value('bogus')]],
+    ])('%p should throw', (operands) => {
+      const expression = and(operands)
+      expect(() => expression.evaluate({})).toThrowError()
     })
   })
 
   describe('simplify', () => {
-    it.each<[Logical, Evaluable | boolean]>([
-      [and(identityEvaluable(), value(true)), identityEvaluable()],
-      [and(identityEvaluable(), value(false), identityEvaluable()), false],
-      [and(value(true), value(true)), true],
-      [
-        and(identityEvaluable(), value(true), identityEvaluable()),
-        and(identityEvaluable(), identityEvaluable()),
-      ],
-    ])('%p should simplify to %p', (evaluable, expected) => {
-      expect(`${evaluable.simplify({})}`).toBe(`${expected}`)
-    })
-  })
-
-  describe('serialize', () => {
-    it.each<[Logical, unknown[]]>([
-      [and(value(10), reference('test')), ['AND', 10, '$test']],
-    ])('%p should serialize to %p', (evaluable, expected) => {
-      expect(
-        evaluable.serialize({
-          reference: defaultReferenceSerializeOptions,
-          operatorMapping: new Map([[KIND, 'AND']]),
-        })
-      ).toEqual(expected)
-    })
-  })
-
-  describe('toString', () => {
     it.each([
-      [and(value(10), reference('ref'), value(5)), '(10 AND {ref} AND 5)'],
-    ])('%p should be %p', (evaluable, expected) => {
-      expect(evaluable.toString()).toBe(expected)
+      [[value(true), value(true)], true],
+      [[value(false), value(true)], false],
+      [[reference('RefA'), value(true)], true],
+      [[reference('Missing'), value(true)], reference('Missing')],
+      [
+        [reference('Missing'), reference('Missing')],
+        and([reference('Missing'), reference('Missing')]),
+      ],
+      [[value(true), reference('invalid')], reference('invalid')],
+    ])('%p should evaluate as %p', (operands, expected) => {
+      const simplified = and(operands).simplify({ RefA: true, invalid: 1 })
+
+      if (isEvaluable(simplified)) {
+        expect(`${expected}`).toBe(`${simplified}`)
+      } else {
+        expect(expected).toBe(simplified)
+      }
     })
   })
 })
