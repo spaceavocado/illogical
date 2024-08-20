@@ -9,10 +9,12 @@ import {
   ReferenceSerializeOptions,
   ReferenceSimplifyOptions,
 } from './operand/reference'
-import { parser } from './parser'
+import { DEFAULT_OPERATOR_MAPPING, parser } from './parser'
 import { Operator } from './parser/parser'
 
-export { DEFAULT_OPERATOR_MAPPING, Operator } from './parser'
+export type { ReferenceSerializeOptions, ReferenceSimplifyOptions }
+export type { Operator }
+export { DEFAULT_OPERATOR_MAPPING }
 
 export type Illogical = {
   parse: (expression: Expression) => Evaluable
