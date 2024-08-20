@@ -85,7 +85,6 @@
 						<section class="tsd-index-section ">
 							<h3>Variables</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="operand_reference.html#KIND" class="tsd-kind-icon">KIND</a></li>
 								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="operand_reference.html#defaultReferenceSerializeOptions" class="tsd-kind-icon">default<wbr>Reference<wbr>Serialize<wbr>Options</a></li>
 							</ul>
 						</section>
@@ -93,11 +92,15 @@
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="operand_reference.html#contextLookup" class="tsd-kind-icon">context<wbr>Lookup</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="operand_reference.html#evaluate" class="tsd-kind-icon">evaluate</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="operand_reference.html#getDataType" class="tsd-kind-icon">get<wbr>Data<wbr>Type</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="operand_reference.html#isIgnoredPath" class="tsd-kind-icon">is<wbr>Ignored<wbr>Path</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="operand_reference.html#isValidDataType" class="tsd-kind-icon">is<wbr>Valid<wbr>Data<wbr>Type</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="operand_reference.html#reference" class="tsd-kind-icon">reference</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="operand_reference.html#toBoolean" class="tsd-kind-icon">to<wbr>Boolean</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="operand_reference.html#toDataType" class="tsd-kind-icon">to<wbr>Data<wbr>Type</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="operand_reference.html#toFloat" class="tsd-kind-icon">to<wbr>Float</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="operand_reference.html#toInt" class="tsd-kind-icon">to<wbr>Int</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="operand_reference.html#toNumber" class="tsd-kind-icon">to<wbr>Number</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="operand_reference.html#toString" class="tsd-kind-icon">to<wbr>String</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="operand_reference.html#trimDataType" class="tsd-kind-icon">trim<wbr>Data<wbr>Type</a></li>
@@ -114,7 +117,7 @@
 					<div class="tsd-signature tsd-kind-icon">Reference<wbr>Serialize<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>from<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>to<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/4ab43e0/src/operand/reference.ts#L26">operand/reference.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/operand/reference.ts#L29">src/operand/reference.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -129,7 +132,7 @@
 									<li class="tsd-description">
 										<aside class="tsd-sources">
 											<ul>
-												<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/4ab43e0/src/operand/reference.ts#L27">operand/reference.ts:27</a></li>
+												<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/operand/reference.ts#L30">src/operand/reference.ts:30</a></li>
 											</ul>
 										</aside>
 										<h4 class="tsd-parameters-title">Parameters</h4>
@@ -151,7 +154,7 @@
 									<li class="tsd-description">
 										<aside class="tsd-sources">
 											<ul>
-												<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/4ab43e0/src/operand/reference.ts#L28">operand/reference.ts:28</a></li>
+												<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/operand/reference.ts#L31">src/operand/reference.ts:31</a></li>
 											</ul>
 										</aside>
 										<h4 class="tsd-parameters-title">Parameters</h4>
@@ -173,7 +176,7 @@
 					<div class="tsd-signature tsd-kind-icon">Reference<wbr>Simplify<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>ignoredPaths<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/4ab43e0/src/operand/reference.ts#L31">operand/reference.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/operand/reference.ts#L34">src/operand/reference.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -189,22 +192,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Variables</h2>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
-					<a name="KIND" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> KIND</h3>
-					<div class="tsd-signature tsd-kind-icon">KIND<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="operand_reference.html#KIND" class="tsd-signature-type" data-tsd-kind="Variable">KIND</a><span class="tsd-signature-symbol"> = ...</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/4ab43e0/src/operand/reference.ts#L24">operand/reference.ts:24</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
 					<a name="defaultReferenceSerializeOptions" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> default<wbr>Reference<wbr>Serialize<wbr>Options</h3>
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Reference<wbr>Serialize<wbr>Options<span class="tsd-signature-symbol">:</span> <a href="operand_reference.html#ReferenceSerializeOptions" class="tsd-signature-type" data-tsd-kind="Type alias">ReferenceSerializeOptions</a><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/4ab43e0/src/operand/reference.ts#L35">operand/reference.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/operand/reference.ts#L38">src/operand/reference.ts:38</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -215,25 +208,57 @@
 					<a name="contextLookup" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> context<wbr>Lookup</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">context<wbr>Lookup<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="evaluable.html#Context" class="tsd-signature-type" data-tsd-kind="Type alias">Context</a>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">]</span></li>
+						<li class="tsd-signature tsd-kind-icon">context<wbr>Lookup<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="evaluable.html#Context" class="tsd-signature-type" data-tsd-kind="Type alias">Context</a>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, nestedReferenceRx<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/4ab43e0/src/operand/reference.ts#L111">operand/reference.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/operand/reference.ts#L198">src/operand/reference.ts:198</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>context: <a href="evaluable.html#Context" class="tsd-signature-type" data-tsd-kind="Type alias">Context</a></h5>
+									<h5>context: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="evaluable.html#Context" class="tsd-signature-type" data-tsd-kind="Type alias">Context</a></h5>
 								</li>
 								<li>
 									<h5>path: <span class="tsd-signature-type">string</span></h5>
 								</li>
+								<li>
+									<h5>nestedReferenceRx: <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></h5>
+								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">]</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="evaluate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> evaluate</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">evaluate<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="evaluable.html#Context" class="tsd-signature-type" data-tsd-kind="Type alias">Context</a>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, dataType<span class="tsd-signature-symbol">: </span><a href="../enums/operand_reference.DataType.html" class="tsd-signature-type" data-tsd-kind="Enumeration">DataType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="evaluable.html#Evaluated" class="tsd-signature-type" data-tsd-kind="Type alias">Evaluated</a><span class="tsd-signature-symbol">]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/operand/reference.ts#L233">src/operand/reference.ts:233</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>context: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="evaluable.html#Context" class="tsd-signature-type" data-tsd-kind="Type alias">Context</a></h5>
+								</li>
+								<li>
+									<h5>path: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>dataType: <a href="../enums/operand_reference.DataType.html" class="tsd-signature-type" data-tsd-kind="Enumeration">DataType</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="evaluable.html#Evaluated" class="tsd-signature-type" data-tsd-kind="Type alias">Evaluated</a><span class="tsd-signature-symbol">]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -241,19 +266,22 @@
 					<a name="getDataType" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Data<wbr>Type</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Data<wbr>Type<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/operand_reference.DataType.html" class="tsd-signature-type" data-tsd-kind="Enumeration">DataType</a></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Data<wbr>Type<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, dataTypeRx<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/operand_reference.DataType.html" class="tsd-signature-type" data-tsd-kind="Enumeration">DataType</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/4ab43e0/src/operand/reference.ts#L52">operand/reference.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/operand/reference.ts#L62">src/operand/reference.ts:62</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>path: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>dataTypeRx: <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../enums/operand_reference.DataType.html" class="tsd-signature-type" data-tsd-kind="Enumeration">DataType</a></h4>
@@ -270,7 +298,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/4ab43e0/src/operand/reference.ts#L150">operand/reference.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/operand/reference.ts#L227">src/operand/reference.ts:227</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -290,22 +318,22 @@
 					<a name="isValidDataType" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> is<wbr>Valid<wbr>Data<wbr>Type</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Valid<wbr>Data<wbr>Type<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">type</span><span class="tsd-signature-symbol"> is </span><a href="../enums/operand_reference.DataType.html" class="tsd-signature-type" data-tsd-kind="Enumeration">DataType</a></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Valid<wbr>Data<wbr>Type<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">input</span><span class="tsd-signature-symbol"> is </span><a href="../enums/operand_reference.DataType.html" class="tsd-signature-type" data-tsd-kind="Enumeration">DataType</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/4ab43e0/src/operand/reference.ts#L49">operand/reference.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/operand/reference.ts#L56">src/operand/reference.ts:56</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>type: <span class="tsd-signature-type">unknown</span></h5>
+									<h5>input: <span class="tsd-signature-type">unknown</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">type</span><span class="tsd-signature-symbol"> is </span><a href="../enums/operand_reference.DataType.html" class="tsd-signature-type" data-tsd-kind="Enumeration">DataType</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">input</span><span class="tsd-signature-symbol"> is </span><a href="../enums/operand_reference.DataType.html" class="tsd-signature-type" data-tsd-kind="Enumeration">DataType</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -313,19 +341,25 @@
 					<a name="reference" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> reference</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">reference<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a></li>
+						<li class="tsd-signature tsd-kind-icon">reference<span class="tsd-signature-symbol">(</span>address<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, serializeOptions<span class="tsd-signature-symbol">?: </span><a href="operand_reference.html#ReferenceSerializeOptions" class="tsd-signature-type" data-tsd-kind="Type alias">ReferenceSerializeOptions</a>, simplifyOptions<span class="tsd-signature-symbol">?: </span><a href="operand_reference.html#ReferenceSimplifyOptions" class="tsd-signature-type" data-tsd-kind="Type alias">ReferenceSimplifyOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/4ab43e0/src/operand/reference.ts#L171">operand/reference.ts:171</a></li>
+									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/operand/reference.ts#L244">src/operand/reference.ts:244</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">string</span></h5>
+									<h5>address: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>serializeOptions: <a href="operand_reference.html#ReferenceSerializeOptions" class="tsd-signature-type" data-tsd-kind="Type alias">ReferenceSerializeOptions</a><span class="tsd-signature-symbol"> = ...</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> simplifyOptions: <a href="operand_reference.html#ReferenceSimplifyOptions" class="tsd-signature-type" data-tsd-kind="Type alias">ReferenceSimplifyOptions</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a></h4>
@@ -333,16 +367,39 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="toDataType" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> to<wbr>Data<wbr>Type</h3>
+					<a name="toBoolean" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> to<wbr>Boolean</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Data<wbr>Type<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><a href="../enums/operand_reference.DataType.html" class="tsd-signature-type" data-tsd-kind="Enumeration">DataType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="evaluable.html#Evaluated" class="tsd-signature-type" data-tsd-kind="Type alias">Evaluated</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="evaluable.html#Evaluated" class="tsd-signature-type" data-tsd-kind="Type alias">Evaluated</a></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Boolean<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/4ab43e0/src/operand/reference.ts#L91">operand/reference.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/operand/reference.ts#L153">src/operand/reference.ts:153</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">unknown</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="toDataType" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> to<wbr>Data<wbr>Type</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Data<wbr>Type<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><a href="../enums/operand_reference.DataType.html" class="tsd-signature-type" data-tsd-kind="Enumeration">DataType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="evaluable.html#Evaluated" class="tsd-signature-type" data-tsd-kind="Type alias">Evaluated</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/operand/reference.ts#L182">src/operand/reference.ts:182</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -351,18 +408,18 @@
 									<h5>type: <a href="../enums/operand_reference.DataType.html" class="tsd-signature-type" data-tsd-kind="Enumeration">DataType</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="evaluable.html#Evaluated" class="tsd-signature-type" data-tsd-kind="Type alias">Evaluated</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="evaluable.html#Evaluated" class="tsd-signature-type" data-tsd-kind="Type alias">Evaluated</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="evaluable.html#Evaluated" class="tsd-signature-type" data-tsd-kind="Type alias">Evaluated</a></h4>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-signature">
 									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="evaluable.html#Evaluated" class="tsd-signature-type" data-tsd-kind="Type alias">Evaluated</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="evaluable.html#Evaluated" class="tsd-signature-type" data-tsd-kind="Type alias">Evaluated</a></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="evaluable.html#Evaluated" class="tsd-signature-type" data-tsd-kind="Type alias">Evaluated</a></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
 											<h4 class="tsd-parameters-title">Parameters</h4>
 											<ul class="tsd-parameters">
 												<li>
-													<h5>value: <a href="evaluable.html#Evaluated" class="tsd-signature-type" data-tsd-kind="Type alias">Evaluated</a></h5>
+													<h5>value: <span class="tsd-signature-type">unknown</span></h5>
 												</li>
 											</ul>
 											<h4 class="tsd-returns-title">Returns <a href="evaluable.html#Evaluated" class="tsd-signature-type" data-tsd-kind="Type alias">Evaluated</a></h4>
@@ -374,22 +431,89 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="toNumber" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> to<wbr>Number</h3>
+					<a name="toFloat" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> to<wbr>Float</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Number<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="evaluable.html#Evaluated" class="tsd-signature-type" data-tsd-kind="Type alias">Evaluated</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Float<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span>, intRx<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RegExp</span>, floatRx<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/4ab43e0/src/operand/reference.ts#L72">operand/reference.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/operand/reference.ts#L127">src/operand/reference.ts:127</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <a href="evaluable.html#Evaluated" class="tsd-signature-type" data-tsd-kind="Type alias">Evaluated</a></h5>
+									<h5>value: <span class="tsd-signature-type">unknown</span></h5>
+								</li>
+								<li>
+									<h5>intRx: <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></h5>
+								</li>
+								<li>
+									<h5>floatRx: <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="toInt" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> to<wbr>Int</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Int<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span>, intRx<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RegExp</span>, floatRx<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RegExp</span>, floatTrimRx<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/operand/reference.ts#L106">src/operand/reference.ts:106</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">unknown</span></h5>
+								</li>
+								<li>
+									<h5>intRx: <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></h5>
+								</li>
+								<li>
+									<h5>floatRx: <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></h5>
+								</li>
+								<li>
+									<h5>floatTrimRx: <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="toNumber" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> to<wbr>Number</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Number<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span>, intRx<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RegExp</span>, floatRx<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/operand/reference.ts#L83">src/operand/reference.ts:83</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">unknown</span></h5>
+								</li>
+								<li>
+									<h5>intRx: <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></h5>
+								</li>
+								<li>
+									<h5>floatRx: <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h4>
@@ -400,19 +524,19 @@
 					<a name="toString" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> to<wbr>String</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="evaluable.html#Evaluated" class="tsd-signature-type" data-tsd-kind="Type alias">Evaluated</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/4ab43e0/src/operand/reference.ts#L85">operand/reference.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/operand/reference.ts#L147">src/operand/reference.ts:147</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <a href="evaluable.html#Evaluated" class="tsd-signature-type" data-tsd-kind="Type alias">Evaluated</a></h5>
+									<h5>value: <span class="tsd-signature-type">unknown</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h4>
@@ -423,19 +547,22 @@
 					<a name="trimDataType" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> trim<wbr>Data<wbr>Type</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">trim<wbr>Data<wbr>Type<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">trim<wbr>Data<wbr>Type<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, trimDataTypeRx<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/4ab43e0/src/operand/reference.ts#L69">operand/reference.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/operand/reference.ts#L78">src/operand/reference.ts:78</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>path: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>trimDataTypeRx: <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -467,13 +594,13 @@
 						<a href="operand_reference.html#ReferenceSimplifyOptions" class="tsd-kind-icon">Reference<wbr>Simplify<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-module">
-						<a href="operand_reference.html#KIND" class="tsd-kind-icon">KIND</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-module">
 						<a href="operand_reference.html#defaultReferenceSerializeOptions" class="tsd-kind-icon">default<wbr>Reference<wbr>Serialize<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="operand_reference.html#contextLookup" class="tsd-kind-icon">context<wbr>Lookup</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="operand_reference.html#evaluate" class="tsd-kind-icon">evaluate</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="operand_reference.html#getDataType" class="tsd-kind-icon">get<wbr>Data<wbr>Type</a>
@@ -488,7 +615,16 @@
 						<a href="operand_reference.html#reference" class="tsd-kind-icon">reference</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="operand_reference.html#toBoolean" class="tsd-kind-icon">to<wbr>Boolean</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="operand_reference.html#toDataType" class="tsd-kind-icon">to<wbr>Data<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="operand_reference.html#toFloat" class="tsd-kind-icon">to<wbr>Float</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="operand_reference.html#toInt" class="tsd-kind-icon">to<wbr>Int</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="operand_reference.html#toNumber" class="tsd-kind-icon">to<wbr>Number</a>
@@ -521,6 +657,9 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 			</ul>
 		</div>
 	</div>
