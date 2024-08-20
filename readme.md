@@ -13,8 +13,6 @@ Other implementations:
 
 This project has been developed to provide a shared conditional logic between front-end and back-end code, stored in JSON or in any other data serialization format.
 
-> Forked from [briza-insurance/illogical](https://github.com/briza-insurance/illogical).
-
 > Code documentation could be found here: https://spaceavocado.github.io/illogical/index.html.
 
 > The library is being build as **CommonJS** module and **ESM**.
@@ -350,7 +348,7 @@ Expression format: `["==", `[Left Operand](#operand-types), [Right Operand](#ope
 
 > Valid operand types: string, number, boolean.
 
-```tson
+```json
 ["==", 5, 5]
 ```
 
@@ -364,7 +362,7 @@ Expression format: `["!=", `[Left Operand](#operand-types), [Right Operand](#ope
 
 > Valid operand types: string, number, boolean.
 
-```tson
+```json
 ["!=", "circle", "square"]
 ```
 
@@ -378,7 +376,7 @@ Expression format: `[">", `[Left Operand](#operand-types), [Right Operand](#oper
 
 > Valid operand types: number.
 
-```tson
+```json
 [">", 10, 5]
 ```
 
@@ -392,7 +390,7 @@ Expression format: `[">=", `[Left Operand](#operand-types), [Right Operand](#ope
 
 > Valid operand types: number.
 
-```tson
+```json
 [">=", 5, 5]
 ```
 
@@ -406,7 +404,7 @@ Expression format: `["<", `[Left Operand](#operand-types), [Right Operand](#oper
 
 > Valid operand types: number.
 
-```tson
+```json
 ["<", 5, 10]
 ```
 
@@ -420,7 +418,7 @@ Expression format: `["<=", `[Left Operand](#operand-types), [Right Operand](#ope
 
 > Valid operand types: number.
 
-```tson
+```json
 ["<=", 5, 5]
 ```
 
@@ -434,7 +432,7 @@ Expression format: `["IN", `[Left Operand](#operand-types), [Right Operand](#ope
 
 > Valid operand types: number and number[] or string and string[].
 
-```tson
+```json
 ["IN", 5, [1,2,3,4,5]]
 ["IN", ["circle", "square", "triangle"], "square"]
 ```
@@ -450,7 +448,7 @@ Expression format: `["NOT IN", `[Left Operand](#operand-types), [Right Operand](
 
 > Valid operand types: number and number[] or string and string[].
 
-```tson
+```json
 ["IN", 10, [1,2,3,4,5]]
 ["IN", ["circle", "square", "triangle"], "oval"]
 ```
@@ -469,7 +467,7 @@ Expression format: `["PREFIX", `[Left Operand](#operand-types), [Right Operand](
 - Left operand is the PREFIX term.
 - Right operand is the tested word.
 
-```tson
+```json
 ["PREFIX", "hemi", "hemisphere"]
 ```
 
@@ -487,7 +485,7 @@ Expression format: `["SUFFIX", `[Left Operand](#operand-types), [Right Operand](
 - Left operand is the tested word.
 - Right operand is the SUFFIX term.
 
-```tson
+```json
 ["SUFFIX", "establishment", "ment"]
 ```
 
@@ -502,7 +500,7 @@ Expression format: `["OVERLAP", `[Left Operand](#operand-types), [Right Operand]
 
 > Valid operand types number[] or string[].
 
-```tson
+```json
 ["OVERLAP", [1, 2], [1, 2, 3, 4, 5]]
 ["OVERLAP", ["circle", "square", "triangle"], ["square"]]
 ```
@@ -516,7 +514,7 @@ i.evaluate(['OVERLAP', ['circle', 'square', 'triangle'], ['square', 'oval']]) //
 
 Expression format: `["UNDEFINED", `[Reference Operand](#reference)`]`.
 
-```tson
+```json
 ["UNDEFINED", "$RefA"]
 ```
 
@@ -532,7 +530,7 @@ Evaluates as FALSE when the operand is UNDEFINED or NULL.
 
 Expression format: `["PRESENT", `[Reference Operand](#reference)`]`.
 
-```tson
+```json
 ["PRESENT", "$RefA"]
 ```
 
@@ -555,7 +553,7 @@ Expression format: `["AND", Left Operand 1, Right Operand 2, ... , Right Operand
 
 > Valid operand types: [Comparison Expression](#comparison-expressions) or [Nested Logical Expression](#logical-expressions).
 
-```tson
+```json
 ["AND", ["==", 5, 5], ["==", 10, 10]]
 ```
 
@@ -571,7 +569,7 @@ Expression format: `["OR", Left Operand 1, Right Operand 2, ... , Right Operand 
 
 > Valid operand types: [Comparison Expression](#comparison-expressions) or [Nested Logical Expression](#logical-expressions).
 
-```tson
+```json
 ["OR", ["==", 5, 5], ["==", 10, 5]]
 ```
 
@@ -587,7 +585,7 @@ Expression format: `["NOR", Left Operand 1, Right Operand 2, ... , Right Operand
 
 > Valid operand types: [Comparison Expression](#comparison-expressions) or [Nested Logical Expression](#logical-expressions).
 
-```tson
+```json
 ["NOR", ["==", 5, 1], ["==", 10, 5]]
 ```
 
@@ -603,7 +601,7 @@ Expression format: `["XOR", Left Operand 1, Right Operand 2, ... , Right Operand
 
 > Valid operand types: [Comparison Expression](#comparison-expressions) or [Nested Logical Expression](#logical-expressions).
 
-```tson
+```json
 ["XOR", ["==", 5, 5], ["==", 10, 5]]
 ```
 
@@ -611,7 +609,7 @@ Expression format: `["XOR", Left Operand 1, Right Operand 2, ... , Right Operand
 i.evaluate(['XOR', ['==', 5, 5], ['==', 10, 5]]) // true
 ```
 
-```tson
+```json
 ["XOR", ["==", 5, 5], ["==", 10, 10]]
 ```
 
@@ -627,7 +625,7 @@ Expression format: `["NOT", Operand]`
 
 > Valid operand types: [Comparison Expression](#comparison-expressions) or [Nested Logical Expression](#logical-expressions).
 
-```tson
+```json
 ["NOT", ["==", 5, 5]]
 ```
 

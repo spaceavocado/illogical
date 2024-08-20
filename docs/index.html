@@ -63,12 +63,21 @@
 				</a>
 				<p>A micro conditional javascript engine used to parse the raw logical and comparison expressions, evaluate the expression in the given data context, and provide access to a text form of the given expressions.</p>
 				<blockquote>
-					<p>Revision: Jan 5, 2022.</p>
+					<p>Revision: Aug 20, 2024.</p>
 				</blockquote>
+				<p>Other implementations:</p>
+				<ul>
+					<li><a href="https://github.com/spaceavocado/goillogical">GO</a></li>
+					<li><a href="https://github.com/spaceavocado/pyillogical">Python</a></li>
+					<li><a href="https://github.com/spaceavocado/cillogical">C#</a></li>
+				</ul>
 				<a href="#about" id="about" style="color: inherit; text-decoration: none;">
 					<h2>About</h2>
 				</a>
 				<p>This project has been developed to provide a shared conditional logic between front-end and back-end code, stored in JSON or in any other data serialization format.</p>
+				<blockquote>
+					<p>Forked from <a href="https://github.com/briza-insurance/illogical">briza-insurance/illogical</a>.</p>
+				</blockquote>
 				<blockquote>
 					<p>Code documentation could be found here: <a href="https://spaceavocado.github.io/illogical/index.html">https://spaceavocado.github.io/illogical/index.html</a>.</p>
 				</blockquote>
@@ -85,69 +94,73 @@
 				<p><strong>Table of Content</strong></p>
 				<hr>
 				<ul>
-					<li><a href="#basic-usage">Basic Usage</a><ul>
-							<li><a href="#evaluate">Evaluate</a></li>
-							<li><a href="#statement">Statement</a></li>
-							<li><a href="#parse">Parse</a><ul>
-									<li><a href="#evaluable-function">Evaluable Function</a></li>
+					<li><a href="#illogical">illogical</a><ul>
+							<li><a href="#about">About</a></li>
+							<li><a href="#installation-via-npm-or-yarn">Installation via NPM or Yarn</a></li>
+							<li><a href="#basic-usage">Basic Usage</a><ul>
+									<li><a href="#evaluate">Evaluate</a></li>
+									<li><a href="#statement">Statement</a></li>
+									<li><a href="#parse">Parse</a><ul>
+											<li><a href="#evaluate-function">Evaluate Function</a></li>
+										</ul>
+									</li>
+									<li><a href="#simplify">Simplify</a></li>
 								</ul>
 							</li>
-							<li><a href="#simplify">Simplify</a></li>
-						</ul>
-					</li>
-					<li><a href="#working-with-expressions">Working with Expressions</a><ul>
-							<li><a href="#evaluation-data-context">Evaluation Data Context</a></li>
-							<li><a href="#operand-types">Operand Types</a><ul>
-									<li><a href="#value">Value</a></li>
-									<li><a href="#reference">Reference</a></li>
-									<li><a href="#collection">Collection</a></li>
+							<li><a href="#working-with-expressions">Working with Expressions</a><ul>
+									<li><a href="#evaluation-data-context">Evaluation Data Context</a><ul>
+											<li><a href="#accessing-array-element">Accessing Array Element:</a></li>
+											<li><a href="#accessing-array-element-via-reference">Accessing Array Element via Reference:</a></li>
+											<li><a href="#nested-referencing">Nested Referencing</a></li>
+											<li><a href="#composite-reference-key">Composite Reference Key</a></li>
+											<li><a href="#data-type-casting">Data Type Casting</a></li>
+										</ul>
+									</li>
+									<li><a href="#operand-types">Operand Types</a><ul>
+											<li><a href="#value">Value</a></li>
+											<li><a href="#reference">Reference</a></li>
+											<li><a href="#collection">Collection</a></li>
+										</ul>
+									</li>
+									<li><a href="#comparison-expressions">Comparison Expressions</a><ul>
+											<li><a href="#equal">Equal</a></li>
+											<li><a href="#not-equal">Not Equal</a></li>
+											<li><a href="#greater-than">Greater Than</a></li>
+											<li><a href="#greater-than-or-equal">Greater Than or Equal</a></li>
+											<li><a href="#less-than">Less Than</a></li>
+											<li><a href="#less-than-or-equal">Less Than or Equal</a></li>
+											<li><a href="#in">In</a></li>
+											<li><a href="#not-in">Not In</a></li>
+											<li><a href="#prefix">Prefix</a></li>
+											<li><a href="#suffix">Suffix</a></li>
+											<li><a href="#overlap">Overlap</a></li>
+											<li><a href="#undefined">Undefined</a></li>
+											<li><a href="#present">Present</a></li>
+										</ul>
+									</li>
+									<li><a href="#logical-expressions">Logical Expressions</a><ul>
+											<li><a href="#and">And</a></li>
+											<li><a href="#or">Or</a></li>
+											<li><a href="#nor">Nor</a></li>
+											<li><a href="#xor">Xor</a></li>
+											<li><a href="#not">Not</a></li>
+										</ul>
+									</li>
 								</ul>
 							</li>
-							<li><a href="#comparison-expressions">Comparison Expressions</a><ul>
-									<li><a href="#equal">Equal</a></li>
-									<li><a href="#not-equal">Not Equal</a></li>
-									<li><a href="#greater-than">Greater Than</a></li>
-									<li><a href="#greater-than-or-equal">Greater Than or Equal</a></li>
-									<li><a href="#less-than">Less Than</a></li>
-									<li><a href="#less-than-or-equal">Less Than or Equal</a></li>
-									<li><a href="#in">In</a></li>
-									<li><a href="#not-in">Not In</a></li>
-									<li><a href="#prefix">Prefix</a></li>
-									<li><a href="#suffix">Suffix</a></li>
-									<li><a href="#overlap">Overlap</a></li>
-									<li><a href="#undefined">Undefined</a></li>
-									<li><a href="#present">Present</a></li>
+							<li><a href="#engine-options">Engine Options</a><ul>
+									<li><a href="#parser-options">Parser Options</a><ul>
+											<li><a href="#reference-predicate">Reference Predicate</a></li>
+											<li><a href="#reference-transform">Reference Transform</a></li>
+											<li><a href="#operator-mapping">Operator Mapping</a></li>
+										</ul>
+									</li>
 								</ul>
 							</li>
-							<li><a href="#logical-expressions">Logical Expressions</a><ul>
-									<li><a href="#and">And</a></li>
-									<li><a href="#or">Or</a></li>
-									<li><a href="#nor">Nor</a></li>
-									<li><a href="#xor">Xor</a></li>
-									<li><a href="#not">Not</a></li>
-								</ul>
-							</li>
+							<li><a href="#contributing">Contributing</a></li>
+							<li><a href="#license">License</a></li>
 						</ul>
 					</li>
-					<li><a href="#engine-options">Engine Options</a><ul>
-							<li><a href="#parser-options">Parser Options</a><ul>
-									<li><a href="#reference-predicate">Reference Predicate</a></li>
-									<li><a href="#reference-transform">Reference Transform</a></li>
-									<li><a href="#operator-mapping">Operator Mapping</a></li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-					<li><a href="#breaking-changes">Breaking Changes</a><ul>
-							<li><a href="#v120">v1.2.0</a></li>
-							<li><a href="#v142">v1.4.2</a></li>
-						</ul>
-					</li>
-					<li><a href="#contributing">Contributing</a><ul>
-							<li><a href="#pull-request-process">Pull Request Process</a></li>
-						</ul>
-					</li>
-					<li><a href="#license">License</a></li>
 				</ul>
 				<hr>
 				<a href="#basic-usage" id="basic-usage" style="color: inherit; text-decoration: none;">
@@ -306,6 +319,9 @@
 				<ul>
 					<li>.(String): cast a given reference to String.</li>
 					<li>.(Number): cast a given reference to Number.</li>
+					<li>.(Integer): cast a given reference to whole number.</li>
+					<li>.(Float): cast a given reference to floating point number.</li>
+					<li>.(Boolean): cast a given reference to boolean value.</li>
 				</ul>
 				<p><strong>Example</strong></p>
 				<pre><code class="language-ts"><span style="color: #008000">// Data context</span>
@@ -418,7 +434,7 @@
 				<blockquote>
 					<p>Valid operand types: string, number, boolean.</p>
 				</blockquote>
-				<pre><code class="language-tson">[&quot;==&quot;, 5, 5]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
 </code></pre>
@@ -429,7 +445,7 @@
 				<blockquote>
 					<p>Valid operand types: string, number, boolean.</p>
 				</blockquote>
-				<pre><code class="language-tson">[&quot;!=&quot;, &quot;circle&quot;, &quot;square&quot;]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;!=&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;circle&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;square&quot;</span><span style="color: #000000">]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;!=&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;square&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
 </code></pre>
@@ -440,7 +456,7 @@
 				<blockquote>
 					<p>Valid operand types: number.</p>
 				</blockquote>
-				<pre><code class="language-tson">[&quot;&gt;&quot;, 10, 5]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;&gt;&quot;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;&gt;&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
 </code></pre>
@@ -451,7 +467,7 @@
 				<blockquote>
 					<p>Valid operand types: number.</p>
 				</blockquote>
-				<pre><code class="language-tson">[&quot;&gt;=&quot;, 5, 5]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;&gt;=&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;&gt;=&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
 </code></pre>
@@ -462,7 +478,7 @@
 				<blockquote>
 					<p>Valid operand types: number.</p>
 				</blockquote>
-				<pre><code class="language-tson">[&quot;&lt;&quot;, 5, 10]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;&lt;&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;&lt;&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
 </code></pre>
@@ -473,7 +489,7 @@
 				<blockquote>
 					<p>Valid operand types: number.</p>
 				</blockquote>
-				<pre><code class="language-tson">[&quot;&lt;=&quot;, 5, 5]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;&lt;=&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;&lt;=&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
 </code></pre>
@@ -484,8 +500,8 @@
 				<blockquote>
 					<p>Valid operand types: number and number[] or string and string[].</p>
 				</blockquote>
-				<pre><code class="language-tson">[&quot;IN&quot;, 5, [1,2,3,4,5]]
-[&quot;IN&quot;, [&quot;circle&quot;, &quot;square&quot;, &quot;triangle&quot;], &quot;square&quot;]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;IN&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, [</span><span style="color: #098658">1</span><span style="color: #000000">,</span><span style="color: #098658">2</span><span style="color: #000000">,</span><span style="color: #098658">3</span><span style="color: #000000">,</span><span style="color: #098658">4</span><span style="color: #000000">,</span><span style="color: #098658">5</span><span style="color: #000000">]]</span>
+<span style="color: #000000">[</span><span style="color: #A31515">&quot;IN&quot;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;circle&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;square&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;triangle&quot;</span><span style="color: #000000">], </span><span style="color: #A31515">&quot;square&quot;</span><span style="color: #000000">]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;IN&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">, </span><span style="color: #098658">4</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
 <span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;IN&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;square&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;triangle&#039;</span><span style="color: #000000">], </span><span style="color: #A31515">&#039;square&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
@@ -497,8 +513,8 @@
 				<blockquote>
 					<p>Valid operand types: number and number[] or string and string[].</p>
 				</blockquote>
-				<pre><code class="language-tson">[&quot;IN&quot;, 10, [1,2,3,4,5]]
-[&quot;IN&quot;, [&quot;circle&quot;, &quot;square&quot;, &quot;triangle&quot;], &quot;oval&quot;]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;IN&quot;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, [</span><span style="color: #098658">1</span><span style="color: #000000">,</span><span style="color: #098658">2</span><span style="color: #000000">,</span><span style="color: #098658">3</span><span style="color: #000000">,</span><span style="color: #098658">4</span><span style="color: #000000">,</span><span style="color: #098658">5</span><span style="color: #000000">]]</span>
+<span style="color: #000000">[</span><span style="color: #A31515">&quot;IN&quot;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;circle&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;square&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;triangle&quot;</span><span style="color: #000000">], </span><span style="color: #A31515">&quot;oval&quot;</span><span style="color: #000000">]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;NOT IN&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">, </span><span style="color: #098658">4</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
 <span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;NOT IN&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;square&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;triangle&#039;</span><span style="color: #000000">], </span><span style="color: #A31515">&#039;oval&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
@@ -514,7 +530,7 @@
 					<li>Left operand is the PREFIX term.</li>
 					<li>Right operand is the tested word.</li>
 				</ul>
-				<pre><code class="language-tson">[&quot;PREFIX&quot;, &quot;hemi&quot;, &quot;hemisphere&quot;]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;PREFIX&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;hemi&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;hemisphere&quot;</span><span style="color: #000000">]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PREFIX&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;hemi&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;hemisphere&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
 <span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PREFIX&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;hemi&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;sphere&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// false</span>
@@ -530,7 +546,7 @@
 					<li>Left operand is the tested word.</li>
 					<li>Right operand is the SUFFIX term.</li>
 				</ul>
-				<pre><code class="language-tson">[&quot;SUFFIX&quot;, &quot;establishment&quot;, &quot;ment&quot;]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;SUFFIX&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;establishment&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;ment&quot;</span><span style="color: #000000">]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;SUFFIX&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;establishment&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;ment&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// true</span>
 <span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;SUFFIX&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;establish&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;ment&#039;</span><span style="color: #000000">]) </span><span style="color: #008000">// false</span>
@@ -542,8 +558,8 @@
 				<blockquote>
 					<p>Valid operand types number[] or string[].</p>
 				</blockquote>
-				<pre><code class="language-tson">[&quot;OVERLAP&quot;, [1, 2], [1, 2, 3, 4, 5]]
-[&quot;OVERLAP&quot;, [&quot;circle&quot;, &quot;square&quot;, &quot;triangle&quot;], [&quot;square&quot;]]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;OVERLAP&quot;</span><span style="color: #000000">, [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">], [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">, </span><span style="color: #098658">4</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]</span>
+<span style="color: #000000">[</span><span style="color: #A31515">&quot;OVERLAP&quot;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;circle&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;square&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;triangle&quot;</span><span style="color: #000000">], [</span><span style="color: #A31515">&quot;square&quot;</span><span style="color: #000000">]]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;OVERLAP&#039;</span><span style="color: #000000">, [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">6</span><span style="color: #000000">], [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">, </span><span style="color: #098658">4</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
 <span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;OVERLAP&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;circle&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;square&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;triangle&#039;</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;square&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;oval&#039;</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
@@ -552,7 +568,7 @@
 					<h4>Undefined</h4>
 				</a>
 				<p>Expression format: <code>[&quot;UNDEFINED&quot;, </code><a href="#reference">Reference Operand</a><code>]</code>.</p>
-				<pre><code class="language-tson">[&quot;UNDEFINED&quot;, &quot;$RefA&quot;]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;UNDEFINED&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;$RefA&quot;</span><span style="color: #000000">]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;UNDEFINED&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], {}) </span><span style="color: #008000">// true</span>
 <span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;UNDEFINED&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">RefA:</span><span style="color: #000000"> </span><span style="color: #0000FF">undefined</span><span style="color: #000000"> }) </span><span style="color: #008000">// true</span>
@@ -563,7 +579,7 @@
 				</a>
 				<p>Evaluates as FALSE when the operand is UNDEFINED or NULL.</p>
 				<p>Expression format: <code>[&quot;PRESENT&quot;, </code><a href="#reference">Reference Operand</a><code>]</code>.</p>
-				<pre><code class="language-tson">[&quot;PRESENT&quot;, &quot;$RefA&quot;]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;PRESENT&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;$RefA&quot;</span><span style="color: #000000">]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PRESENT&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], {}) </span><span style="color: #008000">// false</span>
 <span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;PRESENT&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;RefA&#039;</span><span style="color: #000000">], { </span><span style="color: #001080">RefA:</span><span style="color: #000000"> </span><span style="color: #0000FF">undefined</span><span style="color: #000000"> }) </span><span style="color: #008000">// false</span>
@@ -583,7 +599,7 @@
 				<blockquote>
 					<p>Valid operand types: <a href="#comparison-expressions">Comparison Expression</a> or <a href="#logical-expressions">Nested Logical Expression</a>.</p>
 				</blockquote>
-				<pre><code class="language-tson">[&quot;AND&quot;, [&quot;==&quot;, 5, 5], [&quot;==&quot;, 10, 10]]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;AND&quot;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
 </code></pre>
@@ -595,7 +611,7 @@
 				<blockquote>
 					<p>Valid operand types: <a href="#comparison-expressions">Comparison Expression</a> or <a href="#logical-expressions">Nested Logical Expression</a>.</p>
 				</blockquote>
-				<pre><code class="language-tson">[&quot;OR&quot;, [&quot;==&quot;, 5, 5], [&quot;==&quot;, 10, 5]]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;OR&quot;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;OR&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
 </code></pre>
@@ -607,7 +623,7 @@
 				<blockquote>
 					<p>Valid operand types: <a href="#comparison-expressions">Comparison Expression</a> or <a href="#logical-expressions">Nested Logical Expression</a>.</p>
 				</blockquote>
-				<pre><code class="language-tson">[&quot;NOR&quot;, [&quot;==&quot;, 5, 1], [&quot;==&quot;, 10, 5]]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;NOR&quot;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">1</span><span style="color: #000000">], [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;NOR&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">1</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
 </code></pre>
@@ -619,11 +635,11 @@
 				<blockquote>
 					<p>Valid operand types: <a href="#comparison-expressions">Comparison Expression</a> or <a href="#logical-expressions">Nested Logical Expression</a>.</p>
 				</blockquote>
-				<pre><code class="language-tson">[&quot;XOR&quot;, [&quot;==&quot;, 5, 5], [&quot;==&quot;, 10, 5]]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;XOR&quot;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;XOR&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
 </code></pre>
-				<pre><code class="language-tson">[&quot;XOR&quot;, [&quot;==&quot;, 5, 5], [&quot;==&quot;, 10, 10]]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;XOR&quot;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;XOR&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">], [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">, </span><span style="color: #098658">10</span><span style="color: #000000">]]) </span><span style="color: #008000">// false</span>
 </code></pre>
@@ -635,7 +651,7 @@
 				<blockquote>
 					<p>Valid operand types: <a href="#comparison-expressions">Comparison Expression</a> or <a href="#logical-expressions">Nested Logical Expression</a>.</p>
 				</blockquote>
-				<pre><code class="language-tson">[&quot;NOT&quot;, [&quot;==&quot;, 5, 5]]
+				<pre><code class="language-json"><span style="color: #000000">[</span><span style="color: #A31515">&quot;NOT&quot;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;==&quot;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]</span>
 </code></pre>
 				<pre><code class="language-ts"><span style="color: #001080">i</span><span style="color: #000000">.</span><span style="color: #795E26">evaluate</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;NOT&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">]]) </span><span style="color: #008000">// true</span>
 </code></pre>
@@ -689,49 +705,30 @@
 </code></pre>
 				<p><strong>Default operator mapping:</strong></p>
 				<pre><code class="language-ts"><span style="color: #008000">// Comparison</span>
-<span style="color: #000000">;[</span><span style="color: #0070C1">OPERATOR_EQ</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">]</span>
-<span style="color: #000000">;[</span><span style="color: #0070C1">OPERATOR_NE</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;!=&#039;</span><span style="color: #000000">]</span>
-<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_GT</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&gt;&#039;</span><span style="color: #000000">)]</span>
-<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_GE</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&gt;=&#039;</span><span style="color: #000000">)]</span>
-<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_LT</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&lt;&#039;</span><span style="color: #000000">)]</span>
-<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_LE</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&lt;=&#039;</span><span style="color: #000000">)]</span>
-<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_IN</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;IN&#039;</span><span style="color: #000000">)]</span>
-<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_NOT_IN</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;NOT IN&#039;</span><span style="color: #000000">)]</span>
-<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_PREFIX</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;PREFIX&#039;</span><span style="color: #000000">)]</span>
-<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_SUFFIX</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;SUFFIX&#039;</span><span style="color: #000000">)]</span>
-<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_OVERLAP</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;OVERLAP&#039;</span><span style="color: #000000">)]</span>
-<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_UNDEFINED</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;UNDEFINED&#039;</span><span style="color: #000000">)]</span>
-<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_PRESENT</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;PRESENT&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[</span><span style="color: #001080">Operator</span><span style="color: #000000">.</span><span style="color: #0070C1">EQ</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;==&#039;</span><span style="color: #000000">]</span>
+<span style="color: #000000">;[</span><span style="color: #001080">Operator</span><span style="color: #000000">.</span><span style="color: #0070C1">NE</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;!=&#039;</span><span style="color: #000000">]</span>
+<span style="color: #000000">;[(</span><span style="color: #001080">Operator</span><span style="color: #000000">.</span><span style="color: #0070C1">GT</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&gt;&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #001080">Operator</span><span style="color: #000000">.</span><span style="color: #0070C1">GE</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&gt;=&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #001080">Operator</span><span style="color: #000000">.</span><span style="color: #0070C1">LT</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&lt;&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #001080">Operator</span><span style="color: #000000">.</span><span style="color: #0070C1">LE</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;&lt;=&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #001080">Operator</span><span style="color: #000000">.</span><span style="color: #0070C1">IN</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;IN&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #001080">Operator</span><span style="color: #000000">.</span><span style="color: #0070C1">NOT_IN</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;NOT IN&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #001080">Operator</span><span style="color: #000000">.</span><span style="color: #0070C1">PREFIX</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;PREFIX&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #001080">Operator</span><span style="color: #000000">.</span><span style="color: #0070C1">SUFFIX</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;SUFFIX&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #001080">Operator</span><span style="color: #000000">.</span><span style="color: #0070C1">OVERLAP</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;OVERLAP&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #001080">Operator</span><span style="color: #000000">.</span><span style="color: #0070C1">UNDEFINED</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;UNDEFINED&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #001080">Operator</span><span style="color: #000000">.</span><span style="color: #0070C1">PRESENT</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;PRESENT&#039;</span><span style="color: #000000">)]</span>
 <span style="color: #008000">// Logical</span>
-<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_AND</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">)]</span>
-<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_OR</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;OR&#039;</span><span style="color: #000000">)]</span>
-<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_NOR</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;NOR&#039;</span><span style="color: #000000">)]</span>
-<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_XOR</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;XOR&#039;</span><span style="color: #000000">)]</span>
-<span style="color: #000000">;[(</span><span style="color: #0070C1">OPERATOR_NOT</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;NOT&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #001080">Operator</span><span style="color: #000000">.</span><span style="color: #0070C1">AND</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;AND&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #001080">Operator</span><span style="color: #000000">.</span><span style="color: #0070C1">OR</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;OR&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #001080">Operator</span><span style="color: #000000">.</span><span style="color: #0070C1">NOR</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;NOR&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #001080">Operator</span><span style="color: #000000">.</span><span style="color: #0070C1">XOR</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;XOR&#039;</span><span style="color: #000000">)]</span>
+<span style="color: #000000">;[(</span><span style="color: #001080">Operator</span><span style="color: #000000">.</span><span style="color: #0070C1">NOT</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;NOT&#039;</span><span style="color: #000000">)]</span>
 </code></pre>
 				<blockquote>
 					<p>The operator keys are unique symbols which could be imported from the engine package:</p>
 				</blockquote>
-				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #001080">OPERATOR_EQ</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">OPERATOR_NE</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">OPERATOR_GT</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">OPERATOR_GE</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">OPERATOR_LT</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">OPERATOR_LE</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">OPERATOR_IN</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">OPERATOR_NOT_IN</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">OPERATOR_PREFIX</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">OPERATOR_SUFFIX</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">OPERATOR_OVERLAP</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">OPERATOR_UNDEFINED</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">OPERATOR_PRESENT</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">OPERATOR_AND</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">OPERATOR_OR</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">OPERATOR_NOR</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">OPERATOR_XOR</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">OPERATOR_NOT</span><span style="color: #000000">,</span>
-<span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@spaceavocado/illogical&#039;</span>
+				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #AF00DB">type</span><span style="color: #000000"> { </span><span style="color: #001080">Operator</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@spaceavocado/illogical&#039;</span>
 </code></pre>
 				<hr>
 				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
@@ -760,7 +757,19 @@
 						<a href="modules/common_fp_constant.html">common/fp/constant</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_each.html">common/fp/each</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_entries.html">common/fp/entries</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/common_fp_eq.html">common/fp/eq</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_error.html">common/fp/error</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_fromEntries.html">common/fp/from<wbr>Entries</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/common_fp_head.html">common/fp/head</a>
@@ -790,6 +799,9 @@
 						<a href="modules/common_fp_rxMatches.html">common/fp/rx<wbr>Matches</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_rxReplace.html">common/fp/rx<wbr>Replace</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/common_fp_slice.html">common/fp/slice</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -802,7 +814,13 @@
 						<a href="modules/common_fp_types.html">common/fp/types</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/common_fp_values.html">common/fp/values</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/common_type_check.html">common/type-<wbr>check</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/common_type_check_isArray.html">common/type-<wbr>check/is<wbr>Array</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/common_type_check_isBoolean.html">common/type-<wbr>check/is<wbr>Boolean</a>
@@ -824,9 +842,6 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/common_type_check_isUndefined.html">common/type-<wbr>check/is<wbr>Undefined</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/common_types.html">common/types</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/common_utils.html">common/utils</a>
@@ -925,9 +940,6 @@
 						<a href="modules/operand_value.html">operand/value</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/options.html">options</a>
-					</li>
-					<li class=" tsd-kind-module">
 						<a href="modules/parser.html">parser</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -959,6 +971,9 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 			</ul>
 		</div>
 	</div>

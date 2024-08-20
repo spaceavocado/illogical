@@ -70,12 +70,6 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Type aliases</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="expression_logical_logical.html#Logical" class="tsd-kind-icon">Logical</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="expression_logical_logical.html#logical" class="tsd-kind-icon">logical</a></li>
@@ -85,40 +79,81 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Type aliases</h2>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
-					<a name="Logical" class="tsd-anchor"></a>
-					<h3>Logical</h3>
-					<div class="tsd-signature tsd-kind-icon">Logical<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;evaluate&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>operands<span class="tsd-signature-symbol">: </span><a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>operator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>evaluate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/4ab43e0/src/expression/logical/logical.ts#L12">expression/logical/logical.ts:12</a></li>
-						</ul>
-					</aside>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
 					<a name="logical" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> logical</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">logical<span class="tsd-signature-symbol">(</span>evaluable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><a href="common_types.html#Optional" class="tsd-signature-type" data-tsd-kind="Type alias">Optional</a><span class="tsd-signature-symbol">&lt;</span><a href="expression_logical_logical.html#Logical" class="tsd-signature-type" data-tsd-kind="Type alias">Logical</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;toString&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;serialize&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="expression_logical_logical.html#Logical" class="tsd-signature-type" data-tsd-kind="Type alias">Logical</a></li>
+						<li class="tsd-signature tsd-kind-icon">logical<span class="tsd-signature-symbol">(</span>operator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, symbol<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, evaluate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>operands<span class="tsd-signature-symbol">: </span><a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a><span class="tsd-signature-symbol">[]</span>, context<span class="tsd-signature-symbol">?: </span><a href="evaluable.html#FlattenContext" class="tsd-signature-type" data-tsd-kind="Type alias">FlattenContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">boolean</span>, simplify<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>operands<span class="tsd-signature-symbol">: </span><a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a><span class="tsd-signature-symbol">[]</span>, context<span class="tsd-signature-symbol">?: </span><a href="evaluable.html#FlattenContext" class="tsd-signature-type" data-tsd-kind="Type alias">FlattenContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a>, <span class="tsd-signature-symbol">...</span>operands<span class="tsd-signature-symbol">: </span><a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/4ab43e0/src/expression/logical/logical.ts#L18">expression/logical/logical.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/spaceavocado/illogical/blob/d80bc7d/src/expression/logical/logical.ts#L4">src/expression/logical/logical.ts:4</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>evaluable: <span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><a href="common_types.html#Optional" class="tsd-signature-type" data-tsd-kind="Type alias">Optional</a><span class="tsd-signature-symbol">&lt;</span><a href="expression_logical_logical.html#Logical" class="tsd-signature-type" data-tsd-kind="Type alias">Logical</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;toString&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;serialize&quot;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>operator: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>symbol: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>evaluate: <span class="tsd-signature-symbol">(</span>operands<span class="tsd-signature-symbol">: </span><a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a><span class="tsd-signature-symbol">[]</span>, context<span class="tsd-signature-symbol">?: </span><a href="evaluable.html#FlattenContext" class="tsd-signature-type" data-tsd-kind="Type alias">FlattenContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">boolean</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>operands<span class="tsd-signature-symbol">: </span><a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a><span class="tsd-signature-symbol">[]</span>, context<span class="tsd-signature-symbol">?: </span><a href="evaluable.html#FlattenContext" class="tsd-signature-type" data-tsd-kind="Type alias">FlattenContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>operands: <a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a><span class="tsd-signature-symbol">[]</span></h5>
+														</li>
+														<li>
+															<h5><span class="tsd-flag ts-flagOptional">Optional</span> context: <a href="evaluable.html#FlattenContext" class="tsd-signature-type" data-tsd-kind="Type alias">FlattenContext</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5>simplify: <span class="tsd-signature-symbol">(</span>operands<span class="tsd-signature-symbol">: </span><a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a><span class="tsd-signature-symbol">[]</span>, context<span class="tsd-signature-symbol">?: </span><a href="evaluable.html#FlattenContext" class="tsd-signature-type" data-tsd-kind="Type alias">FlattenContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>operands<span class="tsd-signature-symbol">: </span><a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a><span class="tsd-signature-symbol">[]</span>, context<span class="tsd-signature-symbol">?: </span><a href="evaluable.html#FlattenContext" class="tsd-signature-type" data-tsd-kind="Type alias">FlattenContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>operands: <a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a><span class="tsd-signature-symbol">[]</span></h5>
+														</li>
+														<li>
+															<h5><span class="tsd-flag ts-flagOptional">Optional</span> context: <a href="evaluable.html#FlattenContext" class="tsd-signature-type" data-tsd-kind="Type alias">FlattenContext</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>operands: <a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="expression_logical_logical.html#Logical" class="tsd-signature-type" data-tsd-kind="Type alias">Logical</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/evaluable.Evaluable.html" class="tsd-signature-type" data-tsd-kind="Interface">Evaluable</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -137,9 +172,6 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="expression_logical_logical.html#Logical" class="tsd-kind-icon">Logical</a>
-					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="expression_logical_logical.html#logical" class="tsd-kind-icon">logical</a>
 					</li>
@@ -165,6 +197,9 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 			</ul>
 		</div>
 	</div>
