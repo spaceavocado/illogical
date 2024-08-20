@@ -16,7 +16,7 @@ export type CollectionSerializeOptions = {
   escapeCharacter?: string
 }
 
-export const defaultEscapeCharacter = '\\'
+export const DEFAULT_ESCAPE_CHARACTER = '\\'
 
 export const shouldBeEscaped =
   (options?: CollectionSerializeOptions) =>
@@ -36,7 +36,7 @@ export const escapeOperator =
 export const collection = (
   items: Evaluable[],
   serializeOptions: CollectionSerializeOptions = {
-    escapeCharacter: defaultEscapeCharacter,
+    escapeCharacter: DEFAULT_ESCAPE_CHARACTER,
     escapedOperators: new Set<string>(),
   }
 ): Evaluable => {

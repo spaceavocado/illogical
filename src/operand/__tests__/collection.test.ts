@@ -2,7 +2,7 @@ import { Evaluable } from '../../evaluable'
 import { eq } from '../../expression/comparison'
 import { collection } from '../collection'
 import {
-  defaultEscapeCharacter,
+  DEFAULT_ESCAPE_CHARACTER,
   escapeOperator,
   shouldBeEscaped,
 } from '../collection'
@@ -48,7 +48,7 @@ describe('operand / collection', () => {
   describe('serialize', () => {
     const serializeOptions = {
       escapedOperators: new Set(['==']),
-      escapeCharacter: defaultEscapeCharacter,
+      escapeCharacter: DEFAULT_ESCAPE_CHARACTER,
     }
 
     it.each<[Evaluable, (number | string)[]]>([
@@ -67,7 +67,7 @@ describe('operand / collection', () => {
       [collection([value(20), value(10)], serializeOptions), [20, 10]],
       [
         collection([value('=='), value(10), value(10)], serializeOptions),
-        [`${defaultEscapeCharacter}==`, 10, 10],
+        [`${DEFAULT_ESCAPE_CHARACTER}==`, 10, 10],
       ],
     ])('%p should be serialized to %p', (evaluable, expected) => {
       expect(evaluable.serialize()).toEqual(expected)
